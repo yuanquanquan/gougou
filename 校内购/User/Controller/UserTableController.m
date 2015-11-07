@@ -49,9 +49,9 @@
     UITabBar *tabbar = [UITabBar appearance];
     tabbar.tintColor = [UIColor colorWithRed:248/ 255.0 green:78 / 255.0 blue:38 / 255.0 alpha:1];
     self.tabBarItem.title = @"我的";
-    self.tabBarItem.image = [UIImage imageNamed:@"my.png"];
+//    self.tabBarItem.image = [UIImage imageNamed:@"my.png"];
 //    self.tabBarItem.image = [[UIImage imageNamed:@"zhuye.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
+    self.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"主页" image:[UIImage imageNamed:@"my_deselect.png"] selectedImage:[UIImage imageNamed:@"my_select.png"]];
     
 }
 

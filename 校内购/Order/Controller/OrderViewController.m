@@ -55,9 +55,9 @@
     tabbar.tintColor = [UIColor colorWithRed:248/ 255.0 green:78 / 255.0 blue:38 / 255.0 alpha:1];
     
     self.tabBarItem.title = @"订单";
-    self.tabBarItem.image = [UIImage imageNamed:@"dingdan.png"];
+//    self.tabBarItem.image = [UIImage imageNamed:@"dingdan.png"];
     //    self.tabBarItem.image = [[UIImage imageNamed:@"zhuye.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+    self.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"订单" image:[UIImage imageNamed:@"order_deselect.png"] selectedImage:[UIImage imageNamed:@"order_select.png"]];
 }
 
 
