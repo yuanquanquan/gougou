@@ -78,9 +78,9 @@
     _adrressButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     
-    [_couponLabel setText:@"已优惠¥100.00"];
+    [_couponLabel setText:@"已优惠¥000.00"];
     
-    [_truePayLabel setText:@"实付款¥100.00"];
+    [_truePayLabel setText:@"实付款¥000.00"];
     
 }
 

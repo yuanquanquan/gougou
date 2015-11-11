@@ -19,6 +19,7 @@
 #import "Define.h"
 #import "MBProgressHUD.h"
 #import "GoodsModel.h"
+#import "GoodsPriceTool.h"
 
 @interface MainViewController ()<GoodsViewDelegate, ShopViewDelegate, CLLocationManagerDelegate>
 
@@ -136,7 +137,6 @@
                                  int j ;
                                  for (j = 0; j < dataArray.count; j++) {
                                      NSDictionary *dic = JSON[@"data"][j];
-                                     NSLog(@"dic--->%@", dic);
                                      [_goodsArray addObject:[[GoodsModel alloc]initWithDict:dic]];
                                  }
                                   if (j == dataArray.count) {
@@ -159,7 +159,6 @@
 
     _goodsView.typeArray = _typeArray;
     _goodsView.goodsArray = _goodsArray;
-    NSLog(@"data--->%@", _goodsArray);
     [_goodsView.typeTableView reloadData];
     [_goodsView.goodsTableView reloadData];
     [UIView animateWithDuration:0.3 animations:^{
@@ -232,6 +231,7 @@
 - (void)clickAddButton:(NSString *)str withPoint:(CGPoint)point{
     [self showBuyAction:point];
     NSLog(@"%@", str);
+    [GoodsPriceTool caculatePrice:_shopVIew.allLabel];
 }
 
 - (void)clickImageView:(NSString *)str {

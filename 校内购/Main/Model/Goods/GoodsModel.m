@@ -24,7 +24,7 @@
                        success:^(id JSON) {
                            NSInteger status = [JSON[@"status"] integerValue];
                            if(0 == status) {
-                               NSDictionary *dic = JSON[@"data"][0];
+                               NSDictionary *dic = JSON[@"data"];
                                _summary = dic[@"summary"];
                                if (_summary.length > 30) {
                                    _summary = [_summary substringToIndex:30];

@@ -16,6 +16,7 @@
 
 @interface ShopView : UIView
 
+@property (strong, nonatomic) UILabel *allLabel;
 @property(weak, nonatomic) id <ShopViewDelegate> delegate;
 
 @end

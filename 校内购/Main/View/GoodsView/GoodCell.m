@@ -8,6 +8,8 @@
 
 #import "GoodCell.h"
 #import "UIImageView+WebCache.h"
+#import "SelectGoods.h"
+#import "GoodsPriceTool.h"
 
 @interface GoodCell ()
 
@@ -128,6 +130,24 @@ static const int distance = 2;
 
 - (void)addGood:(UIButton *)sender {
     CGPoint point = [self convertPoint:sender.center toView:self.superview.superview.superview];
-    [self.delegate doSomething:@"你好啊" withPoint:point];
+    SelectGoods *goods = [SelectGoods sharedSelectGoods];
+    NSInteger count = 1;
+    for (NSInteger i = 0; i < goods.selectGoods.count; i++) {
+        NSDictionary *dic = goods.selectGoods[i];
+        if (dic[@"gId"] == _goodsId) {
+            count = [dic[@"amount"] integerValue];
+            count++;
+            [goods.selectGoods removeObjectAtIndex:i];
+            break;
+        }
+    }
+    
+    NSNumber *amount = [NSNumber numberWithInteger:count];
+    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.nameLabel.text, @"price":self.priceLabel.text};
+    [goods.selectGoods addObject:goodsDic];
+    [self.delegate doSomething:@"添加到了购物车" withPoint:point];
+
+    NSLog(@"selectArray---->%@", goods.selectGoods);
+
 }
 @end

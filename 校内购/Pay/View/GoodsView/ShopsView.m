@@ -42,7 +42,7 @@ static const float height = 1 / 4.0;
     [self addSubview:_allLabel];
     
     _allMoneyLabel = [[UILabel alloc]init];
-    [_allMoneyLabel setText:@"¥100.00"];
+    [_allMoneyLabel setText:@"¥000.00"];
     _allMoneyLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview: _allMoneyLabel];
 

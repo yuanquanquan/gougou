@@ -166,6 +166,7 @@ static const int distance = 2;
         [cell.goodsImage sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:goods.picture] andPlaceholderImage:[UIImage imageNamed:@"cache.jpg"] options:SDWebImageRetryFailed progress:nil completed:nil];
         [cell.nameLabel setText:goods.name];
         [cell.detailLabel setText:goods.summary];
+        cell.goodsId = goods.goodsId;
         if (!goods.summary) {
             [self.goodsTableView reloadData];
         }

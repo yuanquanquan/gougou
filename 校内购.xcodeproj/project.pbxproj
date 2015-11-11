@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2209E1AB1BCA056D0043AD8F /* XNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2209E1AA1BCA056D0043AD8F /* XNGAppDelegate.m */; };
 		2209E1B31BCA056D0043AD8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2209E1B21BCA056D0043AD8F /* Assets.xcassets */; };
+		22102BB71BF2F39F00CEE897 /* SelectGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 22102BB61BF2F39F00CEE897 /* SelectGoods.m */; };
+		22102BBA1BF320C200CEE897 /* GoodsPriceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 22102BB91BF320C200CEE897 /* GoodsPriceTool.m */; };
 		221066DB1BD7D3DC00E69B02 /* PayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 221066DA1BD7D3DC00E69B02 /* PayView.m */; };
 		221212F01BE79EF7005DD4C2 /* GoodsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 221212EB1BE79EF7005DD4C2 /* GoodsTool.m */; };
 		221212F11BE79EF7005DD4C2 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 221212ED1BE79EF7005DD4C2 /* GoodsModel.m */; };
@@ -95,6 +97,10 @@
 		2209E1A91BCA056D0043AD8F /* XNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNGAppDelegate.h; sourceTree = "<group>"; };
 		2209E1AA1BCA056D0043AD8F /* XNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNGAppDelegate.m; sourceTree = "<group>"; };
 		2209E1B21BCA056D0043AD8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		22102BB51BF2F39F00CEE897 /* SelectGoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGoods.h; sourceTree = "<group>"; };
+		22102BB61BF2F39F00CEE897 /* SelectGoods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGoods.m; sourceTree = "<group>"; };
+		22102BB81BF320C200CEE897 /* GoodsPriceTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsPriceTool.h; sourceTree = "<group>"; };
+		22102BB91BF320C200CEE897 /* GoodsPriceTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsPriceTool.m; sourceTree = "<group>"; };
 		221066D91BD7D3DC00E69B02 /* PayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayView.h; sourceTree = "<group>"; };
 		221066DA1BD7D3DC00E69B02 /* PayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayView.m; sourceTree = "<group>"; };
 		221212EA1BE79EEC005DD4C2 /* GoodsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsTool.h; sourceTree = "<group>"; };
@@ -301,6 +307,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		22102BB41BF2F37100CEE897 /* SelectGoods */ = {
+			isa = PBXGroup;
+			children = (
+				22102BB51BF2F39F00CEE897 /* SelectGoods.h */,
+				22102BB61BF2F39F00CEE897 /* SelectGoods.m */,
+				22102BB81BF320C200CEE897 /* GoodsPriceTool.h */,
+				22102BB91BF320C200CEE897 /* GoodsPriceTool.m */,
+			);
+			path = SelectGoods;
+			sourceTree = "<group>";
+		};
 		2210667E1BD7BA6B00E69B02 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +393,7 @@
 		22269A051BD092F200632253 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22102BB41BF2F37100CEE897 /* SelectGoods */,
 				221212E91BE79EE4005DD4C2 /* Goods */,
 			);
 			path = Model;
@@ -1064,6 +1082,7 @@
 				224A344A1BD1076400F70A48 /* DockController.m in Sources */,
 				22E864801BDB74750076C2E8 /* ShopsView.m in Sources */,
 				22EB56F31BE3853D00F09199 /* HeadImageController.m in Sources */,
+				22102BB71BF2F39F00CEE897 /* SelectGoods.m in Sources */,
 				22EB56CE1BE1B1E100F09199 /* Account.m in Sources */,
 				2291F3F71BD4BB5D0034A596 /* ShopView.m in Sources */,
 				22EB56CF1BE1B1E100F09199 /* AccountTool.m in Sources */,
@@ -1097,6 +1116,7 @@
 				2291F3F81BD4BB5D0034A596 /* ShopCell.m in Sources */,
 				225D53311BE461DF00D2AC63 /* NameViewController.m in Sources */,
 				228EC44C1BDE4A20000E3AC8 /* SettingViewController.m in Sources */,
+				22102BBA1BF320C200CEE897 /* GoodsPriceTool.m in Sources */,
 				221066DB1BD7D3DC00E69B02 /* PayView.m in Sources */,
 				22EF5A571BD3457900AF9D00 /* GoodsView.m in Sources */,
 				228EC4361BDE47BE000E3AC8 /* HelpViewController.m in Sources */,

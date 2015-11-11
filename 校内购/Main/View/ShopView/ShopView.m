@@ -9,14 +9,17 @@
 #import "ShopView.h"
 #import "ShopCell.h"
 #import "BackView.h"
+#import "SelectGoods.h"
+#import "GoodsPriceTool.h"
 
 @interface ShopView ()<UITableViewDataSource, UITableViewDelegate, ShopCellDelegate, BackViewDelegate>
 
 @property (strong, nonatomic) UITableView *shopList;
 @property (strong, nonatomic) BackView *backView;
 @property (strong, nonatomic) UIButton *trolleyButton;
-@property (strong, nonatomic) UILabel *allLabel;
+
 @property (strong, nonatomic) UIButton *payButton;
+@property (strong, nonatomic) SelectGoods *goods;
 
 @end
 
@@ -30,6 +33,7 @@ static const int headerHeight = 44;
     self = [super initWithFrame:frame];
     if (self) {
         [self buildView];
+        [self loadData];
     }
     return  self;
 }
@@ -37,6 +41,12 @@ static const int headerHeight = 44;
 - (void) awakeFromNib {
     [super awakeFromNib];
     [self buildView];
+    [self loadData];
+}
+
+- (void)loadData {
+    _goods = [SelectGoods sharedSelectGoods];
+    
 }
 
 - (void)buildView {
@@ -50,6 +60,7 @@ static const int headerHeight = 44;
     
     _allLabel = [[UILabel alloc]init];
     [_allLabel setText:@"共计金额:000.00"];
+    [_allLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:_allLabel];
     
     _payButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -99,7 +110,7 @@ static const int headerHeight = 44;
 
 #pragma mark -UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return _goods.selectGoods.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -113,7 +124,13 @@ static const int headerHeight = 44;
         cell = [[ShopCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
     }
-    
+    NSDictionary *dic = _goods.selectGoods[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",dic[@"name"]];
+    cell.priceLabel.text = dic[@"price"];
+    cell.numLabel.text = [NSString stringWithFormat:@"%@",dic[@"amount"]];
+    cell.goodsId = dic[@"gId"];
+    [cell.cutButton setEnabled:YES];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -146,9 +163,20 @@ static const int headerHeight = 44;
     NSLog(@"点击了清空购物车按钮");
     _backView.hidden = YES;
     _shopList.hidden = YES;
+    [_goods.selectGoods removeAllObjects];
+    [_allLabel setText:@"共计金额:000.00"];
 }
 
 - (void)clickTrolley:(id)sender {
+    
+    _goods = [SelectGoods sharedSelectGoods];
+    for (NSDictionary *dic in _goods.selectGoods) {
+        if ([dic[@"amount"] isEqualToNumber:@0]) {
+            [_goods.selectGoods removeObject:dic];
+        }
+    }
+    [self.shopList reloadData];
+    
     [UIView animateWithDuration:0.3 animations:^(){
         _backView.alpha = 0.9;
         _shopList.alpha = 1;
@@ -166,10 +194,12 @@ static const int headerHeight = 44;
 #pragma mark ShopCellDelegate
 - (void)addButton:(NSString *)str {
     NSLog(@"%@", str);
+    [GoodsPriceTool caculatePrice:_allLabel];
 }
 
 - (void)cutButton:(NSString *)str {
     NSLog(@"%@", str);
+    [GoodsPriceTool caculatePrice:_allLabel];
 }
 
 

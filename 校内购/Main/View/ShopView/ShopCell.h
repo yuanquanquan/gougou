@@ -18,6 +18,14 @@
 
 @interface ShopCell : UITableViewCell
 
+@property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) UILabel *priceLabel;
+@property (strong, nonatomic) UILabel *numLabel;
+@property (strong, nonatomic) NSString *goodsId;
+
+@property (strong, nonatomic) UIButton *addButton;
+@property (strong, nonatomic) UIButton *cutButton;
+
 @property (weak, nonatomic) id <ShopCellDelegate> delegate;
 
 @end

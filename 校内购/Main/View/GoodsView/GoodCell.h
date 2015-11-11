@@ -30,6 +30,6 @@
 
 @property (strong, nonatomic) UILabel *lineLabel;
 
-
+@property (strong, nonatomic) NSString *goodsId;
 
 @end

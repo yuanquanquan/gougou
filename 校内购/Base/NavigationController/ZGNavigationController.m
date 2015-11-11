@@ -22,7 +22,8 @@
     // 修改了这个外观对象，相当于修改了整个项目中的外观
     UINavigationBar *bar = [UINavigationBar appearance];
     
-    [bar setBarTintColor:[UIColor colorWithRed:248/ 255.0 green:78 / 255.0 blue:38 / 255.0 alpha:1]];
+//    [bar setBarTintColor:[UIColor colorWithRed:248/ 255.0 green:78 / 255.0 blue:38 / 255.0 alpha:1]];
+    [bar setBarTintColor:[UIColor colorWithRed:220 / 255.0 green:41 / 255.0 blue:15 / 255.0 alpha:1]];
     
     [bar setTitleTextAttributes:@{
                                   NSForegroundColorAttributeName : [UIColor whiteColor]

@@ -7,14 +7,11 @@
 //
 
 #import "ShopCell.h"
+#import "SelectGoods.h"
 
 @interface ShopCell ()
 
-@property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) UILabel *priceLabel;
-@property (strong, nonatomic) UIButton *addButton;
-@property (strong, nonatomic) UILabel *numLabel;
-@property (strong, nonatomic) UIButton *cutButton;
+
 
 @end
 
@@ -40,10 +37,11 @@
     
     _nameLabel = [[UILabel alloc]init];
     [_nameLabel setText:@"\t商品名称"];
-    [self addSubview:_nameLabel];
+//    [self addSubview:_nameLabel];
     
     _priceLabel = [[UILabel alloc]init];
-    [_priceLabel setText:@"¥100.00"];
+    [_priceLabel setText:@"¥000.00"];
+    [_priceLabel setTextColor:[UIColor redColor]];
     [self addSubview:_priceLabel];
     
     _addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -52,7 +50,8 @@
     [self addSubview:_addButton];
     
     _numLabel = [[UILabel alloc]init];
-    [_numLabel setText:@"100"];
+    [_numLabel setText:@"0"];
+    [_numLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:_numLabel];
     
     _cutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -83,7 +82,24 @@
     int num = [[NSString stringWithString: [_numLabel text] ] intValue];
     num++;
     [_numLabel setText:[NSString stringWithFormat:@"%d", num]];
+    SelectGoods *goods = [SelectGoods sharedSelectGoods];
+    NSInteger count = 1;
+    NSInteger i;
+    for (i = 0; i < goods.selectGoods.count; i++) {
+        NSDictionary *dic = goods.selectGoods[i];
+        if (dic[@"gId"] == _goodsId) {
+            count = [dic[@"amount"] integerValue];
+            count++;
+            break;
+        }
+    }
+    if (num > 0 ) {
+        [_cutButton setEnabled:YES];
+    }
     
+    NSNumber *amount = [NSNumber numberWithInteger:count];
+    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.textLabel.text, @"price":self.priceLabel.text};
+    [goods.selectGoods replaceObjectAtIndex:i withObject:goodsDic];
     [self.delegate addButton:@"点击了增加按钮" ];
     
 }
@@ -92,7 +108,26 @@
     int num = [[NSString stringWithString: [_numLabel text] ] intValue];
     num--;
     [_numLabel setText:[NSString stringWithFormat:@"%d", num]];
+    SelectGoods *goods = [SelectGoods sharedSelectGoods];
+    NSInteger count = 1;
+    NSInteger i ;
+    for (i = 0; i < goods.selectGoods.count; i++) {
+        NSDictionary *dic = goods.selectGoods[i];
+        if (dic[@"gId"] == _goodsId) {
+            count = [dic[@"amount"] integerValue];
+            count--;
+//            [goods.selectGoods removeObjectAtIndex:i];
+            break;
+        }
+    }
     
+    NSNumber *amount = [NSNumber numberWithInteger:count];
+    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.textLabel.text, @"price":self.priceLabel.text};
+    [goods.selectGoods replaceObjectAtIndex:i withObject:goodsDic];
+    if (num == 0) {
+        [_cutButton setEnabled:NO];
+    }
+
     [self.delegate addButton:@"点击了减少按钮" ];
     
 }
