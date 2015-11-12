@@ -10,4 +10,9 @@
 
 @interface AddressTool : NSObject
 
+@property (strong, nonatomic) NSArray *addressArray;
+
+//+(NSArray *)allAdress
+
+
 @end

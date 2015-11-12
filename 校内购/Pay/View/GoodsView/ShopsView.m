@@ -7,12 +7,15 @@
 //
 
 #import "ShopsView.h"
+#import "SelectGoods.h"
 
 @interface ShopsView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *shopList;
 @property (strong, nonatomic) UILabel *allLabel;
-@property (strong, nonatomic) UILabel *allMoneyLabel;
+
+
+@property (strong, nonatomic) SelectGoods *goods;
 
 @end
 
@@ -25,6 +28,7 @@ static const float height = 1 / 4.0;
     self = [super initWithFrame:frame];
     if (self) {
         [self buildView];
+        [self loadData];
     }
     return  self;
 }
@@ -32,6 +36,7 @@ static const float height = 1 / 4.0;
 - (void) awakeFromNib {
     [super awakeFromNib];
     [self buildView];
+    [self loadData];
 }
 
 - (void)buildView {
@@ -49,8 +54,13 @@ static const float height = 1 / 4.0;
     _shopList = [[UITableView alloc]init];
     _shopList.delegate = self;
     _shopList.dataSource = self;
+    _shopList.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     [self addSubview:_shopList];
     
+}
+
+- (void)loadData {
+    _goods = [SelectGoods sharedSelectGoods];
 }
 
 - (void)layoutSubviews {
@@ -69,7 +79,7 @@ static const float height = 1 / 4.0;
 
 #pragma mark -UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return _goods.selectGoods.count;
 }
 
 - (NSInteger)numberOfRowsInSection {
@@ -80,10 +90,11 @@ static const float height = 1 / 4.0;
     static NSString *identifier = @"shopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == NULL) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
     }
-    
-    [cell.textLabel setText:@"方便面"];
+    NSDictionary *dic = _goods.selectGoods[indexPath.row];
+    [cell.textLabel setText:dic[@"name"]];
+    [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@ X %@", dic[@"price"], dic[@"amount"]]];
     
     return cell;
 }

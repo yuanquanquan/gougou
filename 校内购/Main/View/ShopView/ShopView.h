@@ -11,6 +11,8 @@
 @protocol ShopViewDelegate <NSObject>
 
 - (void)goPay:(NSString *)str;
+- (void)clickAddbutton:(NSDictionary *)dic withIdx:(NSInteger)index;
+- (void)clickCutbutton:(NSDictionary *)dic withIdx:(NSInteger)index;
 
 @end
 

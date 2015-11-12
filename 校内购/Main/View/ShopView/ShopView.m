@@ -72,6 +72,7 @@ static const int headerHeight = 44;
     _shopList.delegate = self;
     _shopList.dataSource = self;
     _shopList.hidden = YES;
+    _shopList.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     [parent addSubview:_shopList];
     
     _backView = [[BackView alloc]init];
@@ -190,16 +191,14 @@ static const int headerHeight = 44;
 }
 
 
-
 #pragma mark ShopCellDelegate
-- (void)addButton:(NSString *)str {
-    NSLog(@"%@", str);
-    [GoodsPriceTool caculatePrice:_allLabel];
+- (void)addButton:(NSDictionary *)dic wintIdx:(NSInteger)index{
+    
+    [self.delegate clickAddbutton:dic withIdx:index];
 }
 
-- (void)cutButton:(NSString *)str {
-    NSLog(@"%@", str);
-    [GoodsPriceTool caculatePrice:_allLabel];
+- (void)cutButton:(NSDictionary *)dic wintIdx:(NSInteger)index {
+    [self.delegate clickCutbutton:dic withIdx:index];
 }
 
 

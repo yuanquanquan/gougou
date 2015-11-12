@@ -11,8 +11,9 @@
 
 @protocol ShopCellDelegate <NSObject>
 
-- (void)addButton:(NSString *)str;
-- (void)cutButton:(NSString *)str;
+- (void)addButton:(NSDictionary *)dic wintIdx:(NSInteger)index;
+- (void)cutButton:(NSDictionary *)dic wintIdx:(NSInteger)index;
+;
 
 @end
 

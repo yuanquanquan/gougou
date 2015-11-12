@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, GoodsTableViewCellStatues) {
 
 @protocol GoodsViewDelegate <NSObject>
 
-- (void)clickAddButton:(NSString *)str withPoint:(CGPoint)point;
+- (void)clickAddTrolleyButton:(NSDictionary *)dic withIdx:(NSInteger)index withPoint:(CGPoint)point;
 - (void)clickPriceButton:(NSString *)str;
 - (void)clickSalesButton:(NSString *)str;
 - (void)clickImageView:(NSString *)str;

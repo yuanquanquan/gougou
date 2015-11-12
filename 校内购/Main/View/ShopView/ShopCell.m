@@ -100,7 +100,7 @@
     NSNumber *amount = [NSNumber numberWithInteger:count];
     NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.textLabel.text, @"price":self.priceLabel.text};
     [goods.selectGoods replaceObjectAtIndex:i withObject:goodsDic];
-    [self.delegate addButton:@"点击了增加按钮" ];
+    [self.delegate addButton:goodsDic wintIdx:i];
     
 }
 
@@ -128,7 +128,7 @@
         [_cutButton setEnabled:NO];
     }
 
-    [self.delegate addButton:@"点击了减少按钮" ];
+    [self.delegate addButton:goodsDic wintIdx:i];
     
 }
 

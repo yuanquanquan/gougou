@@ -132,7 +132,8 @@ static const int distance = 2;
     CGPoint point = [self convertPoint:sender.center toView:self.superview.superview.superview];
     SelectGoods *goods = [SelectGoods sharedSelectGoods];
     NSInteger count = 1;
-    for (NSInteger i = 0; i < goods.selectGoods.count; i++) {
+    NSInteger i;
+    for (i = 0; i < goods.selectGoods.count; i++) {
         NSDictionary *dic = goods.selectGoods[i];
         if (dic[@"gId"] == _goodsId) {
             count = [dic[@"amount"] integerValue];
@@ -145,7 +146,7 @@ static const int distance = 2;
     NSNumber *amount = [NSNumber numberWithInteger:count];
     NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.nameLabel.text, @"price":self.priceLabel.text};
     [goods.selectGoods addObject:goodsDic];
-    [self.delegate doSomething:@"添加到了购物车" withPoint:point];
+    [self.delegate addTrolley:goodsDic withIdx:i withPoint:point];
 
     NSLog(@"selectArray---->%@", goods.selectGoods);
 

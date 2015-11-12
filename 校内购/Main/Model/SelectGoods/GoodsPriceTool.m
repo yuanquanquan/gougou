@@ -9,12 +9,13 @@
 #import "GoodsPriceTool.h"
 #import "SelectGoods.h"
 #import "HttpTool.h"
+#import "AccountTool.h"
+#import "Account.h"
+#import "NSString+SHA.h"
 
 @implementation GoodsPriceTool
 
-+ (void) caculatePrice:(UILabel *)priceLabel {
-    
-    __block NSString *price = [[NSString alloc]init];
++ (void) caculatePriceWithSuccess:(GetPriceSuccess)success failure:(GetPriceFailure)failure {
     
     SelectGoods *goods = [SelectGoods sharedSelectGoods];
 //    for (NSDictionary *dic in goods.selectGoods) {
@@ -39,18 +40,49 @@
                                                  encoding:NSUTF8StringEncoding];
     
     [HttpTool postWithPath:@"/order/count" params:@{@"goods":jsonString} success:^(id JSON) {
-        NSLog(@"%@", JSON);
-        NSInteger status = [JSON[@"status"] integerValue];
-        if(0 == status) {
-            price = [NSString  stringWithFormat:@"共计金额:%@",JSON[@"data"][@"price"]];
-            [priceLabel setText:price];
-        }else {
-            price = @"商品货源不足";
-        }
+//        NSLog(@"%@", JSON);
+          success(JSON);
     } failure:^(NSError *error) {
-
+        failure(error);
     }];
     
+}
+
+
++(void)creatOrder {
+    //获得时间戳
+    NSDate* dat = [NSDate date];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *timeString = [NSString stringWithFormat:@"%0.f", a];
+    
+    Account *acc = [AccountTool sharedAccountTool].account;
+    
+    SelectGoods *goods = [SelectGoods sharedSelectGoods];
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (NSDictionary *dic in goods.selectGoods) {
+        NSDictionary *dict = @{@"gId":dic[@"gId"], @"amount":dic[@"amount"]};
+        [array addObject:dict];
+    }
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData
+                                                 encoding:NSUTF8StringEncoding];
+    
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjects:@[acc.phone, acc.phone, @"zzg", @"xianyoudiandaxue", timeString, jsonString] forKeys:@[@"phone", @"cphone", @"receiver", @"destination", @"timestamp", @"goods"]];
+    [NSString sha1:dict];
+    [dict  setObject:[NSString sha1:dict] forKey:@"signature"];
+    
+    [HttpTool postWithPath:@"/order/create" params:dict success:^(id JSON) {
+        NSLog(@"%@", JSON);
+
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
+
 }
 
 @end

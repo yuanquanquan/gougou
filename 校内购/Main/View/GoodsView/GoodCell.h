@@ -10,7 +10,7 @@
 
 @protocol GoodCellDelegate <NSObject>
 
-- (void)doSomething:(NSString *) str withPoint:(CGPoint)point;
+- (void)addTrolley:(NSDictionary *)dic withIdx:(NSInteger)index withPoint:(CGPoint)point;
 
 @end
 

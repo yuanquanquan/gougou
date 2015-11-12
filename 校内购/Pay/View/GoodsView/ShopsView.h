@@ -17,5 +17,6 @@
 @interface ShopsView : UIView
 
 @property(weak, nonatomic) id <ShopsViewDelegate> delegate;
+@property (strong, nonatomic) UILabel *allMoneyLabel;
 
 @end

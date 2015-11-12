@@ -16,6 +16,8 @@
 #import "Account.h"
 #import "AccountTool.h"
 #import "RemarkViewController.h"
+#import "GoodsPriceTool.h"
+#import "HttpTool.h"
 
 @interface PayViewController ()<PayViewDelegate, InfoVIewDelegate, AddressTableControllerDelegate, RemarkViewControllerDelegate>
 
@@ -81,6 +83,7 @@
     [_couponLabel setText:@"已优惠¥000.00"];
     
     [_truePayLabel setText:@"实付款¥000.00"];
+//    [GoodsPriceTool caculatePrice:_shopsView.allMoneyLabel];
     
 }
 
@@ -90,6 +93,9 @@
     
     Account *account = [AccountTool sharedAccountTool].account;
     if ([account accessToken]) {
+        
+        [GoodsPriceTool creatOrder];
+        
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"老板没有申请下支付接口" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:action];

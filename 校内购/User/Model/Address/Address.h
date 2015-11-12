@@ -10,4 +10,9 @@
 
 @interface Address : NSObject
 
+@property (strong, nonatomic) NSString *aName;
+@property (strong, nonatomic) NSString *aPhone;
+@property (strong, nonatomic) NSString *aSchool;
+@property (strong, nonatomic) NSString *aHouse;
+
 @end

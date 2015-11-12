@@ -20,6 +20,7 @@
 #import "MBProgressHUD.h"
 #import "GoodsModel.h"
 #import "GoodsPriceTool.h"
+#import "SelectGoods.h"
 
 @interface MainViewController ()<GoodsViewDelegate, ShopViewDelegate, CLLocationManagerDelegate>
 
@@ -88,40 +89,6 @@
 
                      }];
 }
-                                            
-                                            
-                                            
-//- (void)loadGoodsWithSchool:(NSString *)school {
-//    _goodsArray = [[NSMutableArray alloc]init];
-//    __weak MainViewController *main = self;
-//    for (int i = 0; i < _typeArray.count; i++ ) {
-//        NSString *type = _typeArray[i];
-//         NSMutableArray *array = [[NSMutableArray alloc]init];
-//        [GoodsTool initGoodsData:type withSchool:school
-//                         success:^(id JSON) {
-//                             NSInteger status = [JSON[@"status"] integerValue];
-//                             if(0 == status) {
-//                                 NSArray *dataArray = JSON[@"data"];
-//                                 int j ;
-//                                 for (j = 0; j < dataArray.count; j++) {
-//                                     NSDictionary *dic = JSON[@"data"][j];
-//                                     [array addObject:[[GoodsModel alloc]initWithDict:dic]];
-//                                 }
-//                                 [_goodsArray addObject:array];
-//                                 if ((i == _typeArray.count - 1) && (j == dataArray.count)) {
-//                                     [main refreshData];
-//                                 }
-//                            }else {
-//                                 _hud.hidden = YES;
-//                                 [main giveErrorInfo:JSON[@"err"]];
-//                             }
-//                             
-//                         } failure:^(NSError *error) {
-//                             
-//                         }];
-//
-//    }
-//}
 
 - (void)loadGoodsWithSchool:(NSString *)school {
     
@@ -148,7 +115,7 @@
                              }
                              
                          } failure:^(NSError *error) {
-                             
+                             [main giveErrorInfo:@"请检查网络或者手机设置"];
                          }];
         
 
@@ -177,13 +144,9 @@
 //    self.tabBarItem.image = [UIImage imageNamed:@"zhuye.png"];
     //    self.tabBarItem.image = [[UIImage imageNamed:@"zhuye.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"主页" image:[UIImage imageNamed:@"main_deselect.png"] selectedImage:[UIImage imageNamed:@"main_select.png"]];
-    NSLog(@"%@", self.tabBarController.tabBarItem.image);
     
 }
 
-
-                                            
-                                            
 - (void)buildView {
     
     _goodsView.delegate = self;
@@ -208,6 +171,7 @@
 }
 
 
+//点击了定位按钮
 - (void)clickLocation:(UIButton *)button {
     NSLog(@"点击了定位按钮");
     NSString *str = button.titleLabel.text;
@@ -228,18 +192,22 @@
     NSLog(@"%@", str);
 }
 
-- (void)clickAddButton:(NSString *)str withPoint:(CGPoint)point{
+
+//点击了“购”按钮
+- (void)clickAddTrolleyButton:(NSDictionary *)dic withIdx:(NSInteger)index withPoint:(CGPoint)point {
     [self showBuyAction:point];
-    NSLog(@"%@", str);
-    [GoodsPriceTool caculatePrice:_shopVIew.allLabel];
+    [self changePrice:dic withIdx:index];
+    NSLog(@"点击了添加到购物车按钮");
 }
 
+//点击了顶部图片
 - (void)clickImageView:(NSString *)str {
     NSLog(@"%@", str);
     ImageViewController *image = [[ImageViewController alloc]init];
     [self.navigationController pushViewController:image  animated:YES];
 }
 
+//点击了类型Cell
 - (void)clickTypeCell:(GoodsTableViewCellStatues)statues withError:(NSString *)err {
     if (statues == ReloadStart) {
         [_hud setHidden:NO];
@@ -286,11 +254,35 @@
 
 
 #pragma mark ShopViewDelegate
+
+//点击了“去支付”按钮
 - (void)goPay:(NSString *)str {
     NSLog(@"去支付吧");
+    SelectGoods *goods = [SelectGoods sharedSelectGoods];
+    if (goods.selectGoods.count == 0) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"您的购物车还是空的，请先选择商品" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
+
+    }else{
+        PayViewController *pay = [[PayViewController alloc]init];
+        [self.navigationController pushViewController:pay animated:YES];
+
+    }
+}
+
+//点击了加按钮
+- (void)clickCutbutton:(NSDictionary *)dic withIdx:(NSInteger)index {
+    [self changePrice:dic withIdx:index];
+    NSLog(@"点击了增加按钮");
+}
+
+//点击了减少按钮
+- (void)clickAddbutton:(NSDictionary *)dic withIdx:(NSInteger)index {
+    [self changePrice:dic withIdx:index];
+    NSLog(@"点击了减少按钮");
     
-    PayViewController *pay = [[PayViewController alloc]init];
-    [self.navigationController pushViewController:pay animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -299,7 +291,65 @@
 }
 
 
-//定位
+
+//点击购物车按钮，增加按钮，减少按钮后的活动
+- (void)changePrice:(NSDictionary *)dic withIdx:(NSInteger)index {
+    __weak MainViewController *main = self;
+    [GoodsPriceTool caculatePriceWithSuccess:^(id JSON){
+        NSLog(@"%@", JSON);
+        NSInteger status = [JSON[@"status"] integerValue];
+        if(0 == status) {
+            //改变价格
+            NSString *price = [NSString  stringWithFormat:@"共计金额:%@",JSON[@"data"][@"price"]];
+            [_shopVIew.allLabel setText:price];
+            
+        }else {
+            [main giveErrorInfo:JSON[@"err"]];
+            //取消保存进单例
+            SelectGoods *goods = [SelectGoods sharedSelectGoods];
+            NSNumber *count = dic[@"amount"];
+            NSInteger amount = [count integerValue];
+            amount--;
+            count = [NSNumber numberWithInteger:amount];
+            NSMutableDictionary * diction= [NSMutableDictionary dictionaryWithDictionary:dic];
+            [diction removeObjectForKey:@"amount"];
+            [diction setObject:count forKey:@"amount"];
+            [goods.selectGoods replaceObjectAtIndex:index withObject:diction];
+            
+        }
+    }failure:^(NSError *error) {
+        [main giveErrorInfo:@"请检查网络或者手机设置"];
+        //取消保存进单例
+        SelectGoods *goods = [SelectGoods sharedSelectGoods];
+        NSNumber *count = dic[@"amount"];
+        NSInteger amount = [count integerValue];
+        amount--;
+        count = [NSNumber numberWithInteger:amount];
+        NSMutableDictionary * diction= [NSMutableDictionary dictionaryWithDictionary:dic];
+        [diction removeObjectForKey:@"amount"];
+        [diction setObject:count forKey:@"amount"];
+        [goods.selectGoods replaceObjectAtIndex:index withObject:diction];
+    }];
+
+}
+
+
+//网络错误
+- (void)giveErrorInfo:(NSString *)error {
+    
+    NSString *meaagae = [Define sharedDefine].dict[error];
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:meaagae preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+
+
+
+#pragma mask 定位
 
 - (void)startUpdatingLocation {
     
@@ -376,17 +426,6 @@
     }
 }
 
-//网络错误
-- (void)giveErrorInfo:(NSString *)error {
-    
-    NSString *meaagae = [Define sharedDefine].dict[error];
-    
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:meaagae preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:action];
-    [self presentViewController:alert animated:YES completion:nil];
-    
-}
 
 
 

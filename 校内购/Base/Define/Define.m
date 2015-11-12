@@ -31,8 +31,8 @@ single_implementation(Define)
         [dict setObject:@"用户已存在" forKey:@"user_existed"];
         [dict setObject:@"用户不存在" forKey:@"user_not_existed"];
         [dict setObject:@"密码错误" forKey:@"authenticated_failed"];
-//        [dict setObject:@"" forKey:@""];
-//        [dict setObject:@"" forKey:@""];
+        [dict setObject:@"商品库存不足" forKey:@"stock_not_enough"];
+        [dict setObject:@"商品信息错误" forKey:@"goods_info_not_correct"];
 //        [dict setObject:@"" forKey:@""];
 //        [dict setObject:@"" forKey:@""];
 //        [dict setObject:@"" forKey:@""];

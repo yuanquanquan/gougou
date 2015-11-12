@@ -243,8 +243,8 @@ static const int distance = 2;
 
 }
 
-- (void)doSomething:(NSString *)str withPoint:(CGPoint)point{
-    [self.delegate clickAddButton:str withPoint:point];
+- (void)addTrolley:(NSDictionary *)dic withIdx:(NSInteger)index withPoint:(CGPoint)point{
+    [self.delegate clickAddTrolleyButton:dic withIdx:index withPoint:point];
 }
 
 - (void)clickPrice:(UIButton *) sender {
