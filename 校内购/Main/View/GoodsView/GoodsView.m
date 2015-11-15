@@ -130,7 +130,12 @@ static const int distance = 2;
 #pragma mark 返回分组数
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     //NSLog(@"计算分组数");
-    return 1;
+    if ([tableView isEqual:_typeTableView]) {
+        return 1;
+    }else{
+        return _goodsArray.count;
+    }
+
 }
 
 #pragma mark 返回每组行数
@@ -138,7 +143,7 @@ static const int distance = 2;
     if ([tableView isEqual:_typeTableView]) {
         return _typeArray.count;
     }else{
-        return _goodsArray.count;
+        return 1;
     }
 }
 
@@ -161,7 +166,7 @@ static const int distance = 2;
             cell = [[GoodCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier2];
         }
         
-        GoodsModel *goods = _goodsArray[indexPath.row];
+        GoodsModel *goods = _goodsArray[indexPath.section];
         
         [cell.goodsImage sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:goods.picture] andPlaceholderImage:[UIImage imageNamed:@"cache.jpg"] options:SDWebImageRetryFailed progress:nil completed:nil];
         [cell.nameLabel setText:goods.name];
@@ -189,13 +194,15 @@ static const int distance = 2;
         [self loadData:self.typeLabel.text];
         //[self.goodsTableView reloadData];
     }else{
+        GoodsModel *goods = _goodsArray[indexPath.section];
+        [self.delegate clickGoodsCell:goods.goodsId];
         [tableView deselectRowAtIndexPath:_goodsTableView.indexPathForSelectedRow animated:YES];
     }
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat height = self.frame.size.height / 10.0;
+    CGFloat height = self.frame.size.height / 9.0;
     if ([tableView isEqual:_goodsTableView]) {
         height = height * 2;
     }
@@ -204,6 +211,14 @@ static const int distance = 2;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 1.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    CGFloat height = 0;
+    if ([tableView isEqual:_goodsTableView]) {
+        height = 3;
+    }
+    return height;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

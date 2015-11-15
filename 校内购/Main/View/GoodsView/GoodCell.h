@@ -28,7 +28,7 @@
 
 @property (strong, nonatomic)  UIButton *addButton;
 
-@property (strong, nonatomic) UILabel *lineLabel;
+//@property (strong, nonatomic) UILabel *lineLabel;
 
 @property (strong, nonatomic) NSString *goodsId;
 

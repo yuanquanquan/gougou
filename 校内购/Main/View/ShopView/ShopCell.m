@@ -45,8 +45,8 @@
     [self addSubview:_priceLabel];
     
     _addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_addButton setImage:[[UIImage imageNamed:@"jia.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [_addButton addTarget:self action:@selector(clickAdd:) forControlEvents:UIControlEventTouchUpInside];
-    [_addButton setTitle:@"加" forState:UIControlStateNormal];
     [self addSubview:_addButton];
     
     _numLabel = [[UILabel alloc]init];
@@ -55,8 +55,9 @@
     [self addSubview:_numLabel];
     
     _cutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_cutButton setImage:[[UIImage imageNamed:@"jian.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [_cutButton setImage:[[UIImage imageNamed:@"jian_disable.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateDisabled];
     [_cutButton addTarget:self action:@selector(clickCut:) forControlEvents:UIControlEventTouchUpInside];
-    [_cutButton setTitle:@"减" forState:UIControlStateNormal];
     [self addSubview:_cutButton];
 }
 
@@ -67,15 +68,22 @@
     float WIDTH = self.frame.size.width;
     float HEIGHT = self.frame.size.height;
     
-    _nameLabel.frame = CGRectMake(0, 0, WIDTH * (3 / 7.0), HEIGHT);
+    _nameLabel.frame = CGRectMake(0, 0, WIDTH * (3 / 8.0), HEIGHT);
     
     _priceLabel.frame = CGRectMake(_nameLabel.frame.size.width, 0, WIDTH * (2 / 7.0), HEIGHT);
     
-    _addButton.frame = CGRectMake(_priceLabel.frame.origin.x + _priceLabel.frame.size.width, 0, WIDTH * (2 / 21.0), HEIGHT);
+//    _addButton.frame = CGRectMake(_priceLabel.frame.origin.x + _priceLabel.frame.size.width, 0, WIDTH * (2 / 21.0), HEIGHT);
+    _addButton.bounds = CGRectMake(0, 0, WIDTH * (2 / 21.0), WIDTH * (2 / 21.0));
+    _addButton.center = CGPointMake( _priceLabel.frame.origin.x + _priceLabel.frame.size.width + WIDTH * (2 / 21.0) / 2.0, HEIGHT / 2.0);
+//    _goodsImage.center = CGPointMake((WIDTH * 1 / 3.0) / 2.0, HEIGHT / 2.0);
+//    _goodsImage.bounds =  CGRectMake(0, 0, HEIGHT - 10, HEIGHT - 10);
+
     
     _numLabel.frame = CGRectMake(_addButton.frame.origin.x + _addButton.frame.size.width, 0, WIDTH * (2 / 21.0), HEIGHT);
     
-    _cutButton.frame = CGRectMake(_numLabel.frame.origin.x + _numLabel.frame.size.width, 0, WIDTH * (2 / 21.0), HEIGHT);
+//    _cutButton.frame = CGRectMake(_numLabel.frame.origin.x + _numLabel.frame.size.width, 0, WIDTH * (2 / 21.0), HEIGHT);
+    _cutButton.center = CGPointMake( _numLabel.frame.origin.x + _numLabel.frame.size.width + WIDTH * (2 / 21.0) / 2.0, HEIGHT / 2.0);
+    _cutButton.bounds = CGRectMake(0, 0, WIDTH * (2 / 21.0), WIDTH * (2 / 21.0));
 }
 
 - (void)clickAdd:(id)sender {

@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, GoodsTableViewCellStatues) {
 - (void)clickPriceButton:(NSString *)str;
 - (void)clickSalesButton:(NSString *)str;
 - (void)clickImageView:(NSString *)str;
+- (void)clickGoodsCell:(NSString *)gId;
 
 - (void)clickTypeCell:(GoodsTableViewCellStatues) statues withError:(NSString *)err;
 

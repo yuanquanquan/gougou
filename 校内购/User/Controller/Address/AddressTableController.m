@@ -12,23 +12,29 @@
 #import "AddAddressController.h"
 #import "Account.h"
 #import "AccountTool.h"
+#import "Address.h"
 
 @interface AddressTableController ()<AddAddressControllerDelegate>
 
+@property (strong, nonatomic) NSMutableArray *addressArray;
 
 @end
 
 @implementation AddressTableController
 
+- (void)loadView {
+    [super loadView];
+    _addressArray = [[NSMutableArray alloc]init];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
  
     self.title = @"收货地址";
-    
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 
-    
-}
+  }
 
 
 #pragma mark - Table view data source
@@ -40,7 +46,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 5;
+    return _addressArray.count + 1;
 }
 
 
@@ -53,10 +59,11 @@
         cell = [[AddressCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
                 
-    if (indexPath.row == (5 - 1)) {
+    if (indexPath.row == (_addressArray.count)) {
         [cell.addressLabel setText:@"+添加收货地址"];
     }else {
-        [cell.addressLabel setText:@"赵志刚\t13228056261\n西安邮电大学长安校区西区14号楼"];
+        Address *address = _addressArray[indexPath.row];
+        [cell.addressLabel setText:[NSString stringWithFormat:@"%@\t%@\n%@%@号楼", address.aName, address.aPhone, address.aSchool, address.aHouse]];
     }
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -101,8 +108,10 @@
     }
 }
 
+#pragma AddressControllerDelegate
 - (void)addressChanged:(NSString *)address {
-    NSLog(@"%@", address);
+    [_addressArray addObject:address];
+    [self.tableView reloadData];
 }
 
 @end

@@ -51,6 +51,7 @@
     //    __weak GoodsTool *tool = self;
     [HttpTool postWithPath:@"/goods/list" params:dict
                    success:^(id JSON) {
+                       NSLog(@"%@", JSON);
                        sucess(JSON);
                    } failure:^(NSError *error) {
                        failure(error);

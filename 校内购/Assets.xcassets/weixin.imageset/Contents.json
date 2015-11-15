@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iconfont-weixinzhifu 64x64.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "weixin@2x.png",
       "scale" : "2x"
     },
     {

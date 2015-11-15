@@ -207,12 +207,12 @@
                             _hud.hidden = YES;
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                                    [login.navigationController popViewControllerAnimated:YES];
-                                }];
-                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"成功" message:@"登录成功，请继续操作" preferredStyle:UIAlertControllerStyleAlert];
-                                [alert addAction:action];
-                                [self presentViewController:alert animated:YES completion:nil];
+//                                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//                                    [login.navigationController popViewControllerAnimated:YES];
+//                                }];
+//                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"成功" message:@"登录成功，请继续操作" preferredStyle:UIAlertControllerStyleAlert];
+//                                [alert addAction:action];
+//                                [self presentViewController:alert animated:YES completion:nil];
                                 [login.navigationController popViewControllerAnimated:YES];
 
                             });

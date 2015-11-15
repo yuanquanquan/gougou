@@ -20,23 +20,24 @@
         _name = dic[@"name"];
         _picture = dic[@"picture"];
         _price = dic[@"price"];
-        [HttpTool postWithPath:@"/goods/detail" params:@{@"id":dic[@"_id"]}
-                       success:^(id JSON) {
-                           NSInteger status = [JSON[@"status"] integerValue];
-                           if(0 == status) {
-                               NSDictionary *dic = JSON[@"data"];
-                               _summary = dic[@"summary"];
-                               if (_summary.length > 30) {
-                                   _summary = [_summary substringToIndex:30];
-                                   _summary  = [_summary stringByAppendingString:@"..."];
-                               }
-                              }else {
-                                  _summary = @"";
-                             }
-                           
-                       } failure:^(NSError *error) {
-                           _summary = @"";
-                       }];
+        _summary = @"";
+//        [HttpTool postWithPath:@"/goods/detail" params:@{@"id":dic[@"_id"]}
+//                       success:^(id JSON) {
+//                           NSInteger status = [JSON[@"status"] integerValue];
+//                           if(0 == status) {
+//                               NSDictionary *dic = JSON[@"data"];
+//                               _summary = dic[@"summary"];
+//                               if (_summary.length > 30) {
+//                                   _summary = [_summary substringToIndex:30];
+//                                   _summary  = [_summary stringByAppendingString:@"..."];
+//                               }
+//                              }else {
+//                                  _summary = @"";
+//                             }
+//                           
+//                       } failure:^(NSError *error) {
+//                           _summary = @"";
+//                       }];
     }
     
     return self;

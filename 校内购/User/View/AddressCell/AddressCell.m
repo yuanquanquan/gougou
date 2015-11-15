@@ -44,7 +44,7 @@
     
     _addressLabel = [[UILabel alloc]init];
     [_addressLabel setTextAlignment:NSTextAlignmentCenter];
-    [_addressLabel setFont:[UIFont systemFontOfSize:13.0]];
+    [_addressLabel setFont:[UIFont systemFontOfSize:15.0]];
     _addressLabel.numberOfLines = 0;
     [self addSubview:_addressLabel];
     

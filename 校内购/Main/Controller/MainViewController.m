@@ -21,8 +21,9 @@
 #import "GoodsModel.h"
 #import "GoodsPriceTool.h"
 #import "SelectGoods.h"
+#import "GoodsDetailController.h"
 
-@interface MainViewController ()<GoodsViewDelegate, ShopViewDelegate, CLLocationManagerDelegate>
+@interface MainViewController ()<GoodsViewDelegate, ShopViewDelegate, CLLocationManagerDelegate, GoodsDetailControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet GoodsView *goodsView;
 
@@ -51,18 +52,41 @@
     
     self.tabBarItem.title = @"首页";
     
-    [self initData];
+//    [self initData];
 
     [self buildView];
     
     [self startUpdatingLocation];
- }
-
-
-- (void)initData {
+    
+    //_hud的初始化需写在此处，如果写在initData中，_hud会被初始化两次，在界面无法隐藏
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"加载数据中";
+
+ }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    if (_goodsArray.count == 0) {
+        [self initData];
+    }
+}
+
+
+- (void)awakeFromNib {
+    self.title = @"我的";
+    UITabBar *tabbar = [UITabBar appearance];
+    tabbar.tintColor = [UIColor colorWithRed:248/ 255.0 green:78 / 255.0 blue:38 / 255.0 alpha:1];
+    
+    self.tabBarItem.title = @"主页";
+    //    self.tabBarItem.image = [UIImage imageNamed:@"zhuye.png"];
+    //    self.tabBarItem.image = [[UIImage imageNamed:@"zhuye.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"主页" image:[UIImage imageNamed:@"main_deselect.png"] selectedImage:[UIImage imageNamed:@"main_select.png"]];
+    
+}
+
+
+- (void)initData {
 
     __weak MainViewController *main = self;
     [GoodsTool initTypeData:@"西安"
@@ -82,11 +106,7 @@
                      }failure:^(NSError *error) {
                          [_hud hide:YES];
                          NSLog(@"错误：%@", error);
-                         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"失败" message:@"登录失败，请重试" preferredStyle:UIAlertControllerStyleAlert];
-                         [alert addAction:action];
-                         [self presentViewController:alert animated:YES completion:nil];
-
+                         [main giveErrorInfo:@"network_error"];
                      }];
 }
 
@@ -98,6 +118,7 @@
     _goodsArray = [[NSMutableArray alloc]init];
         [GoodsTool initGoodsData:@"" withSchool:school
                          success:^(id JSON) {
+                             [_hud setHidden:YES];
                              NSInteger status = [JSON[@"status"] integerValue];
                              if(0 == status) {
                                  NSArray *dataArray = JSON[@"data"];
@@ -115,7 +136,7 @@
                              }
                              
                          } failure:^(NSError *error) {
-                             [main giveErrorInfo:@"请检查网络或者手机设置"];
+                             [main giveErrorInfo:@"network_error"];
                          }];
         
 
@@ -135,17 +156,6 @@
     }];
 }
 
-- (void)awakeFromNib {
-    self.title = @"我的";
-    UITabBar *tabbar = [UITabBar appearance];
-    tabbar.tintColor = [UIColor colorWithRed:248/ 255.0 green:78 / 255.0 blue:38 / 255.0 alpha:1];
-    
-    self.tabBarItem.title = @"主页";
-//    self.tabBarItem.image = [UIImage imageNamed:@"zhuye.png"];
-    //    self.tabBarItem.image = [[UIImage imageNamed:@"zhuye.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"主页" image:[UIImage imageNamed:@"main_deselect.png"] selectedImage:[UIImage imageNamed:@"main_select.png"]];
-    
-}
 
 - (void)buildView {
     
@@ -220,10 +230,7 @@
         [self giveErrorInfo:err];
     }else if (statues == ReloadErr) {
         _hud.hidden = YES;
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"失败" message:@"登录失败，请重试" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:action];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self giveErrorInfo:@"network_error"];
 
     }
 }
@@ -250,7 +257,30 @@
     } completion:nil];
 }
 
-
+//点击商品cell
+- (void)clickGoodsCell:(NSString *)gId {
+    
+    __weak MainViewController *main = self;
+    [_hud setHidden:NO];
+    [HttpTool postWithPath:@"/goods/detail" params:@{@"id":gId}
+                   success:^(id JSON) {
+                       [_hud setHidden:YES];
+                       NSLog(@"%@", JSON);
+                       NSInteger status = [JSON[@"status"] integerValue];
+                       if(0 == status) {
+                           NSDictionary *dic = JSON[@"data"];
+                           GoodsDetailController *goodsDetail = [[GoodsDetailController alloc]init];
+                           goodsDetail.delegate = self;
+                           goodsDetail.title = dic[@"name"];
+                           goodsDetail.dict = dic;
+                           [main.navigationController pushViewController:goodsDetail animated:YES];
+                       }else {
+                           [main giveErrorInfo:JSON[@"err"]];
+                       }
+                   } failure:^(NSError *error) {
+                       [self giveErrorInfo:@"network_error"];
+                   }];
+}
 
 
 #pragma mark ShopViewDelegate
@@ -290,7 +320,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma  mark GoodsDetailControllerDelegate
+- (void)addTrolleyButton:(NSDictionary *)dic withIdx:(NSInteger)index {
+    [self changePrice:dic withIdx:index];
+}
 
 //点击购物车按钮，增加按钮，减少按钮后的活动
 - (void)changePrice:(NSDictionary *)dic withIdx:(NSInteger)index {
@@ -315,10 +348,11 @@
             [diction removeObjectForKey:@"amount"];
             [diction setObject:count forKey:@"amount"];
             [goods.selectGoods replaceObjectAtIndex:index withObject:diction];
+            [main.shopVIew.shopList reloadData];
             
         }
     }failure:^(NSError *error) {
-        [main giveErrorInfo:@"请检查网络或者手机设置"];
+        [main giveErrorInfo:@"network_error"];
         //取消保存进单例
         SelectGoods *goods = [SelectGoods sharedSelectGoods];
         NSNumber *count = dic[@"amount"];
@@ -329,6 +363,7 @@
         [diction removeObjectForKey:@"amount"];
         [diction setObject:count forKey:@"amount"];
         [goods.selectGoods replaceObjectAtIndex:index withObject:diction];
+        [main.shopVIew.shopList reloadData];
     }];
 
 }
@@ -337,6 +372,7 @@
 //网络错误
 - (void)giveErrorInfo:(NSString *)error {
     
+    [_hud setHidden:YES];
     NSString *meaagae = [Define sharedDefine].dict[error];
     
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:meaagae preferredStyle:UIAlertControllerStyleAlert];

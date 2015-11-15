@@ -18,6 +18,7 @@
 #import "RemarkViewController.h"
 #import "GoodsPriceTool.h"
 #import "HttpTool.h"
+#import "Define.h"
 
 @interface PayViewController ()<PayViewDelegate, InfoVIewDelegate, AddressTableControllerDelegate, RemarkViewControllerDelegate>
 
@@ -84,6 +85,34 @@
     
     [_truePayLabel setText:@"实付款¥000.00"];
 //    [GoodsPriceTool caculatePrice:_shopsView.allMoneyLabel];
+    __weak PayViewController *pay = self;
+    [GoodsPriceTool caculatePriceWithSuccess:^(id JSON){
+        NSLog(@"%@", JSON);
+        NSInteger status = [JSON[@"status"] integerValue];
+        if(0 == status) {
+            //改变价格
+            NSString *price = [NSString  stringWithFormat:@"共计金额:%@",JSON[@"data"][@"price"]];
+            [_shopsView.allMoneyLabel setText:price];
+            
+        }else {
+            NSString *meaagae = [Define sharedDefine].dict[JSON[@"err"]];
+            
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:meaagae preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }failure:^(NSError *error) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请检查网络或手机设置" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler: nil];
+        [alertController addAction:action1];
+        
+        [pay presentViewController:alertController animated:YES completion:nil];
+
+    }];
+    
+
     
 }
 
@@ -92,6 +121,7 @@
     NSLog(@"确定支付");
     
     Account *account = [AccountTool sharedAccountTool].account;
+    
     if ([account accessToken]) {
         
         [GoodsPriceTool creatOrder];

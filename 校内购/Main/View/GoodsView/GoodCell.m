@@ -16,13 +16,6 @@
 
 @end
 
-//图片所占比例
-static const float imageWidth = 0.4;
-//Label和Button的高度
-static const float labelHeight = 15;
-//细小的边距
-static const int distance = 2;
-
 @implementation GoodCell
 
 
@@ -53,7 +46,7 @@ static const int distance = 2;
 
 - (void)buildView {
     
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+//    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _goodsImage = [[UIImageView alloc]init];
     //[_image setBackgroundColor:[UIColor grayColor]];
@@ -62,6 +55,7 @@ static const int distance = 2;
     
     _nameLabel = [[UILabel alloc]init];
     _nameLabel.text = @"商品名称";
+    _nameLabel.numberOfLines = 0;
     [_nameLabel setFont:[UIFont systemFontOfSize:15]];
     //[_nameLabel setBackgroundColor:[UIColor redColor]];
     [self addSubview:_nameLabel];
@@ -76,8 +70,8 @@ static const int distance = 2;
     
     _priceLabel = [[UILabel alloc]init];
     [_priceLabel setText:@"价格:¥100.00"];
-    [_priceLabel setFont:[UIFont systemFontOfSize:12]];
-    //[_priceLabel setBackgroundColor:[UIColor orangeColor]];
+    [_priceLabel setFont:[UIFont systemFontOfSize:15]];
+    [_priceLabel setTextColor:[UIColor redColor]];
     [self addSubview:_priceLabel];
     
     _addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -86,9 +80,9 @@ static const int distance = 2;
     [_addButton setImage:[[UIImage imageNamed:@"gou.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]forState:UIControlStateNormal];
     [self addSubview:_addButton];
     
-    _lineLabel = [[UILabel alloc]init];
-    [_lineLabel setBackgroundColor:[UIColor grayColor]];
-    [self addSubview:_lineLabel];
+//    _lineLabel = [[UILabel alloc]init];
+//    [_lineLabel setBackgroundColor:[UIColor grayColor]];
+//    [self addSubview:_lineLabel];
 }
 
 - (void)layoutSubviews {
@@ -98,18 +92,15 @@ static const int distance = 2;
     float HEIGHT = self.frame.size.height;
     float WIDTH = self.frame.size.width;
     
-    _goodsImage.frame = CGRectMake(0, 0, WIDTH  * imageWidth - distance, HEIGHT - distance);
+    _goodsImage.center = CGPointMake((WIDTH * 1 / 3.0) / 2.0, HEIGHT / 2.0);
+    _goodsImage.bounds =  CGRectMake(0, 0, HEIGHT - 10, HEIGHT - 10);
     
-    _nameLabel.frame = CGRectMake(WIDTH  * imageWidth, distance, WIDTH - WIDTH  * imageWidth - distance, labelHeight - distance);
+     _nameLabel.frame = CGRectMake(WIDTH * 1 / 3.0 + 5, 5, WIDTH * 2 / 3.0 - 5, 25);
     
-    _detailLabel.frame = CGRectMake(WIDTH  * imageWidth, labelHeight - distance, WIDTH - WIDTH  * imageWidth - distance, HEIGHT - 2 * labelHeight -distance);
+    _priceLabel.frame = CGRectMake(WIDTH * 1 / 3.0 + 5, _goodsImage.frame.origin.y + (HEIGHT - 10)  - 25, WIDTH * 1 / 3.0 - 5, 25);
     
-    _priceLabel.frame = CGRectMake(WIDTH *imageWidth, labelHeight + _detailLabel.frame.size.height, (WIDTH - WIDTH *imageWidth) * 0.5 , labelHeight);
+    _addButton.frame = CGRectMake(WIDTH - (HEIGHT - _nameLabel.frame.size.height - 20) - 5, _nameLabel.frame.origin.y + _nameLabel.frame.size.height + 5, HEIGHT - _nameLabel.frame.size.height - 20, HEIGHT - _nameLabel.frame.size.height - 20);
     
-//    _addButton.frame = CGRectMake(WIDTH - _priceLabel.frame.size.width, HEIGHT - labelHeight, _priceLabel.frame.size.width, labelHeight - distance);
-    _addButton.frame = CGRectMake(WIDTH - _priceLabel.frame.size.width * 0.5, HEIGHT - labelHeight * 2, labelHeight * 2, labelHeight * 2);
-    
-    _lineLabel.frame = CGRectMake(0, HEIGHT - distance/2.0, WIDTH, 0.5);
     
 /*
      NSLog(@"显示图片：%@", NSStringFromCGRect(_image.frame));
@@ -129,13 +120,13 @@ static const int distance = 2;
 }
 
 - (void)addGood:(UIButton *)sender {
-    CGPoint point = [self convertPoint:sender.center toView:self.superview.superview.superview];
+    CGPoint point = [self convertPoint:sender.center toView:self.superview.superview.superview.superview];
     SelectGoods *goods = [SelectGoods sharedSelectGoods];
     NSInteger count = 1;
     NSInteger i;
     for (i = 0; i < goods.selectGoods.count; i++) {
         NSDictionary *dic = goods.selectGoods[i];
-        if (dic[@"gId"] == _goodsId) {
+        if ([dic[@"gId"] isEqualToString: _goodsId]) {
             count = [dic[@"amount"] integerValue];
             count++;
             [goods.selectGoods removeObjectAtIndex:i];

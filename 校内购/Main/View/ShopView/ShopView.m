@@ -14,7 +14,7 @@
 
 @interface ShopView ()<UITableViewDataSource, UITableViewDelegate, ShopCellDelegate, BackViewDelegate>
 
-@property (strong, nonatomic) UITableView *shopList;
+
 @property (strong, nonatomic) BackView *backView;
 @property (strong, nonatomic) UIButton *trolleyButton;
 
@@ -51,19 +51,27 @@ static const int headerHeight = 44;
 
 - (void)buildView {
     
+    self.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:0.9];
+    
     UIView *parent  = [self superview];
     
     _trolleyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_trolleyButton setTitle:@"购物车" forState:UIControlStateNormal];
+//    [_trolleyButton setTitle:@"购物车" forState:UIControlStateNormal];
+    [_trolleyButton setImage:[[UIImage imageNamed:@"gouwuche.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [_trolleyButton addTarget:self action:@selector(clickTrolley:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_trolleyButton];
     
     _allLabel = [[UILabel alloc]init];
-    [_allLabel setText:@"共计金额:000.00"];
-    [_allLabel setTextAlignment:NSTextAlignmentCenter];
+    [_allLabel setText:@"共计金额:0"];
+//    [_allLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:_allLabel];
     
     _payButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_payButton.layer setMasksToBounds:YES];
+    [_payButton.layer setCornerRadius:15.0];
+    [_payButton setBackgroundColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:0.7]];
+    [_payButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_payButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [_payButton setTitle:@"去支付" forState:UIControlStateNormal];
     [_payButton addTarget:self action:@selector(clickGoPay:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_payButton];
@@ -86,17 +94,18 @@ static const int headerHeight = 44;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self setBackgroundColor:[UIColor colorWithRed:249 / 255.0 green:249 / 255.0 blue:249 / 255.0 alpha:0.7]];
     
     float HEIGHT = self.frame.size.height;
     float WIDTH = self.frame.size.width;
     
     UIView *parent  = [self superview];
     
-    _trolleyButton.frame = CGRectMake(0, 0, WIDTH * (2 / 7.0), HEIGHT);
+    _trolleyButton.frame = CGRectMake(0, -20, WIDTH * (2 / 7.0), HEIGHT + 20);
     
     _allLabel.frame = CGRectMake(_trolleyButton.frame.size.width, 0, WIDTH * (3 / 7.0), HEIGHT);
     
-    _payButton.frame = CGRectMake(_allLabel.frame.size.width + _trolleyButton.frame.size.width, 0, WIDTH * (2 / 7.0), HEIGHT);
+    _payButton.frame = CGRectMake(_allLabel.frame.size.width + _trolleyButton.frame.size.width, 4, WIDTH * (2 / 7.0) - 5, HEIGHT - 8);
     
     float shopH = 4 * cellHight + headerHeight;
     float shopW = WIDTH;
@@ -143,29 +152,69 @@ static const int headerHeight = 44;
     return headerHeight;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 2;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, tableView.frame.size.height)];
     [headerView setBackgroundColor:[UIColor colorWithRed:253 / 255.0  green:253 /255.0 blue:253 / 255.0 alpha:1.0]];
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width * 0.5, headerHeight)];
-    [nameLabel setBackgroundColor:[UIColor clearColor]];
-    [nameLabel setText:@"  购物车"];
-    [headerView addSubview:nameLabel];
+
+    UIButton *shouButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    shouButton.frame = CGRectMake(shouButton.frame.size.width, 0, tableView.frame.size.width * 0.5, headerHeight);
+    [shouButton setTitle:@"收起购物车" forState:UIControlStateNormal];
+    [shouButton addTarget:self action:@selector(shouqi) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:shouButton];
+//    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width * 0.5, headerHeight)];
+//    [nameLabel setBackgroundColor:[UIColor clearColor]];
+//    [nameLabel setText:@"  购物车"];
+//    [headerView addSubview:nameLabel];
     
     UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    clearButton.frame = CGRectMake(nameLabel.frame.size.width, 0, tableView.frame.size.width * 0.5, headerHeight);
+    clearButton.frame = CGRectMake(shouButton.frame.size.width, 0, tableView.frame.size.width * 0.5, headerHeight);
     [clearButton setTitle:@"清空购物车" forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(clearTrolley:) forControlEvents:UIControlEventTouchUpInside];
+    [clearButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [clearButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [headerView addSubview:clearButton];
     
     return headerView;
 }
 
+//点击了收起购物车按钮
+- (void)shouqi {
+    [UIView animateWithDuration:0.3 animations:^{
+        _backView.hidden = YES;
+        _shopList.hidden = YES;
+
+        CGRect frame = _allLabel.frame;
+        frame.origin.x = _trolleyButton.frame.size.width;
+        [_allLabel setFrame:frame];
+        [_allLabel setTextColor:[UIColor blackColor]];
+        
+    } completion:^(BOOL finished) {
+        _trolleyButton.hidden = NO;
+    }];
+}
+
+//点击了清空购物车按钮
 - (void)clearTrolley:(id)sender {
     NSLog(@"点击了清空购物车按钮");
-    _backView.hidden = YES;
-    _shopList.hidden = YES;
-    [_goods.selectGoods removeAllObjects];
-    [_allLabel setText:@"共计金额:000.00"];
+    [UIView animateWithDuration:0.3 animations:^{
+        _backView.hidden = YES;
+        _shopList.hidden = YES;
+        [_goods.selectGoods removeAllObjects];
+        [_allLabel setText:@"共计金额:000.00"];
+        
+        CGRect frame = _allLabel.frame;
+        frame.origin.x = _trolleyButton.frame.size.width;
+        [_allLabel setFrame:frame];
+        [_allLabel setTextColor:[UIColor blackColor]];
+        _trolleyButton.alpha = 1;
+      } completion:^(BOOL finished) {
+          _trolleyButton.hidden = NO;
+      }];
+
 }
 
 - (void)clickTrolley:(id)sender {
@@ -178,13 +227,18 @@ static const int headerHeight = 44;
     }
     [self.shopList reloadData];
     
+    _trolleyButton.hidden = YES;
     [UIView animateWithDuration:0.3 animations:^(){
         _backView.alpha = 0.9;
         _shopList.alpha = 1;
+        CGRect frame = _allLabel.frame;
+        frame.origin.x = 10;
+        [_allLabel setFrame:frame];
+        [_allLabel setTextColor:[UIColor redColor]];
     }];
     _backView.hidden = !_backView.hidden;
     _shopList.hidden = !_shopList.hidden;
-}
+  }
 
 - (void)clickGoPay:(id)sender {
     [self.delegate  goPay:@"点击了去支付按钮"];
@@ -204,12 +258,20 @@ static const int headerHeight = 44;
 
 #pragma mark BackViewDelegate
 - (void)clickView {
+
     [UIView animateWithDuration:0.3 animations:^(){
         _shopList.alpha = 0;
         _backView.alpha = 0;
+        
+        CGRect frame = _allLabel.frame;
+        frame.origin.x = _trolleyButton.frame.size.width;
+        [_allLabel setFrame:frame];
+        [_allLabel setTextColor:[UIColor blackColor]];
+        
     } completion:^(BOOL finished){
         _backView.hidden = YES;
         _shopList.hidden = YES;
+        _trolleyButton.hidden = NO;
     }];
 }
 

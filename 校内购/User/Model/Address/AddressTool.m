@@ -10,4 +10,10 @@
 
 @implementation AddressTool
 
+
++ (NSArray *)allAdress {
+    
+    return nil;
+}
+
 @end

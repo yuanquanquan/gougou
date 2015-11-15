@@ -26,6 +26,8 @@
 		225D53361BE4729D00D2AC63 /* PassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 225D53341BE4729D00D2AC63 /* PassViewController.m */; };
 		225D53371BE4729D00D2AC63 /* PassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225D53351BE4729D00D2AC63 /* PassViewController.xib */; };
 		225D533A1BE4844200D2AC63 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 225D53391BE4844200D2AC63 /* OrderCell.m */; };
+		22683DBA1BF83F8A00EF9307 /* GoodsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22683DB81BF83F8A00EF9307 /* GoodsDetailController.m */; };
+		22683DBB1BF83F8A00EF9307 /* GoodsDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22683DB91BF83F8A00EF9307 /* GoodsDetailController.xib */; };
 		2289EAF61BD6730900616165 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2289EAF41BD6730900616165 /* PayViewController.m */; };
 		2289EAF71BD6730900616165 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2289EAF51BD6730900616165 /* PayViewController.xib */; };
 		228EC42F1BDE3422000E3AC8 /* AddAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228EC42D1BDE3422000E3AC8 /* AddAddressController.m */; };
@@ -128,6 +130,9 @@
 		225D53351BE4729D00D2AC63 /* PassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassViewController.xib; sourceTree = "<group>"; };
 		225D53381BE4844200D2AC63 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
 		225D53391BE4844200D2AC63 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		22683DB71BF83F8900EF9307 /* GoodsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailController.h; sourceTree = "<group>"; };
+		22683DB81BF83F8A00EF9307 /* GoodsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailController.m; sourceTree = "<group>"; };
+		22683DB91BF83F8A00EF9307 /* GoodsDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailController.xib; sourceTree = "<group>"; };
 		2289EAF31BD6730900616165 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
 		2289EAF41BD6730900616165 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		2289EAF51BD6730900616165 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
@@ -386,6 +391,9 @@
 				228EC43D1BDE48F7000E3AC8 /* ImageViewController.h */,
 				228EC43E1BDE48F7000E3AC8 /* ImageViewController.m */,
 				228EC43F1BDE48F7000E3AC8 /* ImageViewController.xib */,
+				22683DB71BF83F8900EF9307 /* GoodsDetailController.h */,
+				22683DB81BF83F8A00EF9307 /* GoodsDetailController.m */,
+				22683DB91BF83F8A00EF9307 /* GoodsDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1010,6 +1018,7 @@
 				228EC4471BDE49C4000E3AC8 /* InviteViewController.xib in Resources */,
 				2209E1B31BCA056D0043AD8F /* Assets.xcassets in Resources */,
 				22E864851BDB85460076C2E8 /* LoginController.xib in Resources */,
+				22683DBB1BF83F8A00EF9307 /* GoodsDetailController.xib in Resources */,
 				22F493671BDF22AC00142C1E /* SMS_SDKLocalizable.strings in Resources */,
 				228EC44D1BDE4A20000E3AC8 /* SettingViewController.xib in Resources */,
 				22A38BA01BCA643500C78E4C /* LaunchScreen.storyboard in Resources */,
@@ -1131,6 +1140,7 @@
 				22DF69A61BDE218600C35E2B /* AddressTableController.m in Sources */,
 				22269A151BD09B3400632253 /* MainViewController.m in Sources */,
 				22DC22821BE5F17F00D16FEB /* AddressTool.m in Sources */,
+				22683DBA1BF83F8A00EF9307 /* GoodsDetailController.m in Sources */,
 				22DF699F1BDE20F200C35E2B /* CouponTableController.m in Sources */,
 				228EC43B1BDE480C000E3AC8 /* ContactViewController.m in Sources */,
 				22EB56D71BE2188900F09199 /* HomeViewController.m in Sources */,
@@ -1247,6 +1257,7 @@
 					"$(PROJECT_DIR)/SMS_SDK",
 				);
 				INFOPLIST_FILE = "校内购/Other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzg.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1266,6 +1277,7 @@
 					"$(PROJECT_DIR)/SMS_SDK",
 				);
 				INFOPLIST_FILE = "校内购/Other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzg.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";

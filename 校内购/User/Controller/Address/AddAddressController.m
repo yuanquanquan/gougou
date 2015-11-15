@@ -31,11 +31,13 @@
     
     _schoolArray = @[@"西安邮电大学", @"西安交通大学", @"西安工业大学"];
     
-    _houseArray = @[@"13",  @"14", @"15"];
+    _houseArray = @[@"西13",  @"西14", @"西15"];
 }
 
 
 - (void)buildView {
+    
+    [_nameTextField becomeFirstResponder];
     
     _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
     
@@ -66,7 +68,7 @@
 
 - (void)viewWillLayoutSubviews {
     
-    float height = self.view.frame.size.height * (30 / 568.0);
+    float height = self.view.frame.size.height * (35 / 568.0);
 
     CGRect frame;
     frame = _nameTextField.frame;
@@ -131,9 +133,35 @@
 }
 
 - (void)saveAddress {
-    NSString *address = [NSString stringWithFormat:@"%@\t%@\n%@%@号楼",_nameTextField.text, _phoneTextField.text, _SchoolTextField.text, _houseTextField.text];
-    [self.delegate addressChanged:address];
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self isEmpty]) {
+        return;
+    }else {
+        Address *address = [[Address alloc]init];
+        address.aName = _nameTextField.text;
+        address.aPhone = _phoneTextField.text;
+        address.aSchool = _SchoolTextField.text;
+        address.aHouse = _houseTextField.text;
+        [self.delegate addressChanged:address];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
+
+//判断是否有没有输入的项
+- (BOOL)isEmpty {
+    
+    BOOL empty = NO;
+    
+    if (_phoneTextField.text.length == 0 || _nameTextField.text.length == 0 || _SchoolTextField.text.length == 0 || _houseTextField.text.length == 0) {
+        
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请检查信息是否都已输入" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        empty = YES;
+    }
+    return empty;
+}
+
 
 @end

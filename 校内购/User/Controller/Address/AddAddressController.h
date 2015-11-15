@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Address.h"
 
 @protocol AddAddressControllerDelegate <NSObject>
 
-- (void)addressChanged:(NSString *)address;
+- (void)addressChanged:(Address *)address;
 
 @end
 

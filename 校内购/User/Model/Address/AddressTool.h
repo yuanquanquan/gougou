@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSArray *addressArray;
 
-//+(NSArray *)allAdress
++(NSArray *)allAdress;
 
 
 @end

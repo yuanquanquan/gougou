@@ -33,7 +33,7 @@ single_implementation(Define)
         [dict setObject:@"密码错误" forKey:@"authenticated_failed"];
         [dict setObject:@"商品库存不足" forKey:@"stock_not_enough"];
         [dict setObject:@"商品信息错误" forKey:@"goods_info_not_correct"];
-//        [dict setObject:@"" forKey:@""];
+        [dict setObject:@"请检查网络或者手机设置" forKey:@"network_error"];
 //        [dict setObject:@"" forKey:@""];
 //        [dict setObject:@"" forKey:@""];
 //        [dict setObject:@"" forKey:@""];

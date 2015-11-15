@@ -20,5 +20,6 @@
 
 @property (strong, nonatomic) UILabel *allLabel;
 @property(weak, nonatomic) id <ShopViewDelegate> delegate;
+@property (strong, nonatomic) UITableView *shopList;
 
 @end
