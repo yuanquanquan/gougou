@@ -17,7 +17,7 @@
 
 @end
 
-@interface IntroduceView : UIView
+@interface IntroduceView : UITableViewCell
 
 @property (strong, nonatomic) UIImageView *headImage;
 @property (strong, nonatomic) UIButton *loginButton;

@@ -48,6 +48,7 @@
 		22A38B9A1BCA63E800C78E4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22A38B991BCA63E800C78E4C /* Default-568h@2x.png */; };
 		22A38BA01BCA643500C78E4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A38B9D1BCA643500C78E4C /* LaunchScreen.storyboard */; };
 		22A38BA11BCA643500C78E4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A38B9E1BCA643500C78E4C /* main.m */; };
+		22A81CF41BFD7E2800729661 /* XNGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A81CF31BFD7E2800729661 /* XNGButton.m */; };
 		22AB6B611BDA4B0C001C036F /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B601BDA4B0C001C036F /* InfoView.m */; };
 		22AB6B691BDA6EB0001C036F /* ZGBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B681BDA6EB0001C036F /* ZGBarButton.m */; };
 		22B307F41BE4F903000131B8 /* InfoBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B307F31BE4F903000131B8 /* InfoBackView.m */; };
@@ -164,6 +165,8 @@
 		22A38B9C1BCA643500C78E4C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22A38B9D1BCA643500C78E4C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22A38B9E1BCA643500C78E4C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		22A81CF21BFD7E2800729661 /* XNGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNGButton.h; sourceTree = "<group>"; };
+		22A81CF31BFD7E2800729661 /* XNGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNGButton.m; sourceTree = "<group>"; };
 		22AB6B5F1BDA4B0C001C036F /* InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoView.h; path = ../PayView/InfoView.h; sourceTree = "<group>"; };
 		22AB6B601BDA4B0C001C036F /* InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoView.m; path = ../PayView/InfoView.m; sourceTree = "<group>"; };
 		22AB6B671BDA6EB0001C036F /* ZGBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGBarButton.h; sourceTree = "<group>"; };
@@ -808,6 +811,8 @@
 		22E940691BDC913F001815A9 /* Introduce */ = {
 			isa = PBXGroup;
 			children = (
+				22A81CF21BFD7E2800729661 /* XNGButton.h */,
+				22A81CF31BFD7E2800729661 /* XNGButton.m */,
 				22E9406A1BDC916A001815A9 /* IntroduceView.h */,
 				22E9406B1BDC916A001815A9 /* IntroduceView.m */,
 			);
@@ -1094,6 +1099,7 @@
 				22102BB71BF2F39F00CEE897 /* SelectGoods.m in Sources */,
 				22EB56CE1BE1B1E100F09199 /* Account.m in Sources */,
 				2291F3F71BD4BB5D0034A596 /* ShopView.m in Sources */,
+				22A81CF41BFD7E2800729661 /* XNGButton.m in Sources */,
 				22EB56CF1BE1B1E100F09199 /* AccountTool.m in Sources */,
 				22DF69AA1BDE223500C35E2B /* AddressCell.m in Sources */,
 				224A344F1BD10C5400F70A48 /* ZGNavigationController.m in Sources */,
@@ -1257,7 +1263,7 @@
 					"$(PROJECT_DIR)/SMS_SDK",
 				);
 				INFOPLIST_FILE = "校内购/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzg.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1277,7 +1283,7 @@
 					"$(PROJECT_DIR)/SMS_SDK",
 				);
 				INFOPLIST_FILE = "校内购/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzg.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";

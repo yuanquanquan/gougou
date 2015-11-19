@@ -8,12 +8,18 @@
 
 #import "IntroduceView.h"
 #import "UIImageView+WebCache.h"
+#import "XNGButton.h"
 
 
 @interface IntroduceView ()
 
 @property (strong, nonatomic) UIButton *integrateButton;
 @property (strong, nonatomic) UIButton *couponButton;
+
+@property (strong, nonatomic) UILabel *lineLabel1;
+@property (strong, nonatomic) UILabel *lineLabel2;
+@property (strong, nonatomic) UILabel *lineLabel3;
+
 
 @end
 
@@ -59,23 +65,39 @@
     [_quitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_quitButton];
     
-    _integrateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _integrateButton = [XNGButton buttonWithType:UIButtonTypeRoundedRect];
     [_integrateButton setTitle:@"我的积分" forState:UIControlStateNormal];
-    [_integrateButton.layer setMasksToBounds:YES];
-    [_integrateButton.layer setCornerRadius:2.0];
-    [_integrateButton setBackgroundColor:[UIColor whiteColor]];
-    [_integrateButton.layer setBorderWidth:0.1];
+    [_integrateButton setImage:[[UIImage imageNamed:@"jifen"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]forState:UIControlStateNormal];
+//    [_integrateButton setBackgroundColor:[UIColor colorWithRed:244 / 255.0 green:244 /255.0 blue:244 /255.0 alpha:0.5]];
+//    [_integrateButton.layer setMasksToBounds:YES];
+//    [_integrateButton.layer setCornerRadius:2.0];
+//    [_integrateButton setBackgroundColor:[UIColor whiteColor]];
+//    [_integrateButton.layer setBorderWidth:0.1];
     [_integrateButton addTarget:self action:@selector(integrate) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_integrateButton];
     
-    _couponButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _couponButton = [XNGButton buttonWithType:UIButtonTypeRoundedRect];
     [_couponButton setTitle:@"我的优惠劵" forState:UIControlStateNormal];
-    [_couponButton.layer setMasksToBounds:YES];
-    [_couponButton.layer setCornerRadius:2.0];
-    [_couponButton setBackgroundColor:[UIColor whiteColor]];
-    [_couponButton.layer setBorderWidth:0.1];
+    [_couponButton setImage:[[UIImage imageNamed:@"juan"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+//    [_couponButton setBackgroundColor:[UIColor colorWithRed:244 / 255.0 green:244 /255.0 blue:244 /255.0 alpha:0.5]];
     [_couponButton addTarget:self action:@selector(coupon) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_couponButton];
+    
+    _lineLabel1 = [[UILabel alloc]init];
+    [_lineLabel1 setBackgroundColor:[UIColor grayColor]];
+    _lineLabel1.alpha = 0.5;
+    [self addSubview:_lineLabel1];
+    
+    _lineLabel2 = [[UILabel alloc]init];
+    [_lineLabel2 setBackgroundColor:[UIColor grayColor]];
+    _lineLabel2.alpha = 0.5;
+    [self addSubview:_lineLabel2];
+    
+    _lineLabel3 = [[UILabel alloc]init];
+    [_lineLabel3 setBackgroundColor:[UIColor grayColor]];
+    _lineLabel3.alpha = 0.5;
+    [self addSubview:_lineLabel3];
+
     
 }
 
@@ -94,11 +116,16 @@
     
     _quitButton.frame = CGRectMake(WIDTH - _headImage.frame.size.width, _promptLabel.frame.origin.y, _headImage.frame.size.width, _promptLabel.frame.size.height);
     
-    _integrateButton.frame = CGRectMake(0, _headImage.frame.origin.x + _headImage.frame.size.height + 5, WIDTH * (1 / 2.0) - 0.1, HEIGHT * (1 / 3.0));
+    _integrateButton.frame = CGRectMake(0, _headImage.frame.origin.x + _headImage.frame.size.height + 5, WIDTH * (1 / 2.0) - 0.25, HEIGHT * (1 / 3.0));
     
-    _couponButton.frame = CGRectMake(WIDTH * (1 / 2.0) + 0.1, _integrateButton.frame.origin.y, WIDTH * (1 / 2.0) - 0.1, HEIGHT * (1 / 3.0));
+    _couponButton.frame = CGRectMake(WIDTH * (1 / 2.0) + 0.5, _integrateButton.frame.origin.y, WIDTH * (1 / 2.0) - 0.25, HEIGHT * (1 / 3.0));
+    
+    _lineLabel1.frame = CGRectMake(_integrateButton.frame.size.width, _integrateButton.frame.origin.y, 1, HEIGHT * (1 / 3.0));
+    
+    _lineLabel2.frame = CGRectMake(0, _integrateButton.frame.origin.y - 0.5, WIDTH, 0.5);
+    
+    _lineLabel3.frame = CGRectMake(0, _integrateButton.frame.origin.y + _integrateButton.frame.size.height - 0.5, WIDTH, 0.5);
 }
-
 
 - (void)login:(UIButton *)sender {
     

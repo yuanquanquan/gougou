@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"首页";
+    self.title = @"宅购";
     //解决tableview的顶部留白问题
     self.automaticallyAdjustsScrollViewInsets = false;
     

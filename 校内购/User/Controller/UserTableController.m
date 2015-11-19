@@ -51,7 +51,7 @@
     self.tabBarItem.title = @"我的";
 //    self.tabBarItem.image = [UIImage imageNamed:@"my.png"];
 //    self.tabBarItem.image = [[UIImage imageNamed:@"zhuye.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"主页" image:[UIImage imageNamed:@"my_deselect.png"] selectedImage:[UIImage imageNamed:@"my_select.png"]];
+    self.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:[UIImage imageNamed:@"my_deselect.png"] selectedImage:[UIImage imageNamed:@"my_select.png"]];
     
 }
 
@@ -82,35 +82,71 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 5;
+    NSInteger row = 5;
+    if (section == 0) {
+        row = 1;
+    }
+    return row;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITableViewCell *cell;
     
-    [cell.textLabel setText:_nameArray[indexPath.row]];
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.section == 0) {
+//        cell.userInteractionEnabled = NO;
+        cell = _introduceView;
+    }else {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [cell.textLabel setText:_nameArray[indexPath.row]];
+        cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+
+    }
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return self.view.frame.size.height * (1 / 4.0);
+    CGFloat height = 10;
+    if (section == 0) {
+        height = 0;
+    }
+    return height;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat height = self.view.frame.size.height * (1 / 4.0);
+    
+    if (indexPath.section == 1) {
+        height = 44;
+    }
+    return height;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    return _introduceView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    
+//    return _introduceView;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    
+    if (indexPath.section == 0) {
+        Account *account = [AccountTool sharedAccountTool].account;
+        if ([account accessToken]) {
+            InfoViewController *info = [[InfoViewController alloc]init];
+            [self.navigationController pushViewController:info animated:YES];
+        }else{
+            LoginController *login = [[LoginController alloc]init];
+            [self.navigationController pushViewController:login animated:YES];
+        }
+        
+
+    }
+    
+    if (indexPath.row == 0 && indexPath.section == 1) {
         Account *account = [AccountTool sharedAccountTool].account;
         if ([account accessToken]) {
             AddressTableController * address = [[AddressTableController alloc]init];
@@ -120,16 +156,16 @@
             [self.navigationController pushViewController:login animated:YES];
         }
   
-    }else if (indexPath.row == 1) {
+    }else if (indexPath.row == 1  && indexPath.section == 1) {
         InviteViewController *invite = [[InviteViewController alloc]init];
         [self.navigationController pushViewController:invite animated:YES];
-    }else if(indexPath.row == 2) {
+    }else if(indexPath.row == 2 && indexPath.section == 1) {
         HelpViewController *help = [[HelpViewController alloc]init];
         [self.navigationController pushViewController:help animated:YES];
-    }else if (indexPath.row == 3) {
+    }else if (indexPath.row == 3 && indexPath.section == 1) {
         ContactViewController *contact = [[ContactViewController alloc]init];
         [self.navigationController pushViewController:contact animated:YES];
-    }else if (indexPath.row == 4) {
+    }else if (indexPath.row == 4 && indexPath.section == 1) {
         SettingViewController *setting = [[SettingViewController alloc]init];
         [self.navigationController pushViewController:setting animated:YES];
     }
