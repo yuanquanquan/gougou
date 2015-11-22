@@ -10,4 +10,6 @@
 
 @interface TypeCell : UITableViewCell
 
+@property (strong, nonatomic) UILabel *typeLabel;
+
 @end

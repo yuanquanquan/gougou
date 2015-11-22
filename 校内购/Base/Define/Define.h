@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
 
+
+#define DEFAULT_CITY @"西安市"
+
 @interface Define : NSObject
 
 single_interface(Define)

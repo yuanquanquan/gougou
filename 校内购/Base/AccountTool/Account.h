@@ -15,5 +15,7 @@
 @property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSString *nickName;
 @property (nonatomic, retain) NSString *time;
+@property (nonatomic, retain) NSString *city;
+@property (nonatomic, retain) NSString *school;
 
 @end

@@ -200,6 +200,7 @@
                             account.nickName = JSON[@"data"][@"nickName"];
                             account.time = JSON[@"data"][@"time"];
                             account.avatar = JSON[@"data"][@"avatar"];
+//                            account.city = DEFAULT_CITY;
                             [[AccountTool sharedAccountTool] saveAccount:account];
                             
 //                            NSLog(@"time:%@\naccessToken:%@\n昵称:%@\n头像：%@\n电话：%@", account.time, account.accessToken,account.nickName,account.avatar,account.phone);

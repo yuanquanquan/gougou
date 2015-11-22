@@ -18,6 +18,8 @@
     [encoder encodeObject:_phone forKey:@"phone"];
     [encoder encodeObject:_nickName forKey:@"nickName"];
     [encoder encodeObject:_time forKey:@"time"];
+    [encoder encodeObject:_city forKey:@"city"];
+    [encoder encodeObject:_school forKey:@"school"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -27,7 +29,9 @@
         self.avatar = [decoder decodeObjectForKey:@"avatar"];
         self.phone = [decoder decodeObjectForKey:@"phone"];
         self.nickName = [decoder decodeObjectForKey:@"nickName"];
-        self.time = [decoder decodeObjectForKey:@"decode"];
+        self.time = [decoder decodeObjectForKey:@"time"];
+        self.city = [decoder decodeObjectForKey:@"city"];
+        self.school = [decoder decodeObjectForKey:@"school"];
     }
     return self;
 }

@@ -9,6 +9,11 @@
 #import "XNGAppDelegate.h"
 #import <SMS_SDK/SMSSDK.h>
 #import "HomeViewController.h"
+#import "AccountTool.h"
+#import "Account.h"
+#import "SchoolTableController.h"
+#import "ZGNavigationController.h"
+#import "Define.h"
 
 @interface XNGAppDelegate ()
 
@@ -22,14 +27,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    
-//    HomeViewController *home = [[HomeViewController alloc] init];
-//    self.window.rootViewController=home;
-//    [self.window makeKeyAndVisible];
 
-    
+    //默认给城市值为西安
+    Account *account = [AccountTool sharedAccountTool].account;
+//    account = nil;
+//    [[AccountTool sharedAccountTool] saveAccount:account];
+
+    if (account.city == nil) {
+        account.city = DEFAULT_CITY;
+        account.school = @"";
+        [[AccountTool sharedAccountTool] saveAccount:account];
+        
+    }
+
+
     //初始化应用，appKey和appSecret从后台申请得到
     [SMSSDK registerApp:appKey
              withSecret:appSecret];

@@ -12,6 +12,8 @@
 #import "TypeCell.h"
 #import "GoodsModel.h"
 #import "GoodsTool.h"
+#import "Account.h"
+#import "AccountTool.h"
 
 @interface GoodsView()<GoodCellDelegate>
 
@@ -19,7 +21,7 @@
 @end
 
 //一级菜单宽度比
-static const float typeViewWidth = 0.2;
+static const float typeViewWidth = 0.25;
 //二级菜单宽度比
 static const float detailViewWidth = 1 - typeViewWidth;
 //右侧图片高度比
@@ -158,11 +160,13 @@ static const int distance = 2;
         if (cell == NULL) {
             cell = [[TypeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier1];
         }
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", _typeArray[indexPath.row]];
+//        cell.textLabel.text = [NSString stringWithFormat:@"%@", _typeArray[indexPath.row]];
+        cell.typeLabel.text = [NSString stringWithFormat:@"%@", _typeArray[indexPath.row]];
         myCell = cell;
     }else if([tableView isEqual:_goodsTableView]){
         GoodCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier2];
         if (cell == NULL) {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell = [[GoodCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier2];
         }
         
@@ -187,15 +191,14 @@ static const int distance = 2;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([tableView isEqual:_typeTableView]) {
-        UITableViewCell *cell = [_typeTableView cellForRowAtIndexPath:indexPath];
-        [self.typeLabel setText:cell.textLabel.text];
-//        _goodsArray = _shopArray[indexPath.row];
+        TypeCell *cell = [_typeTableView cellForRowAtIndexPath:indexPath];
+//        [self.typeLabel setText:cell.textLabel.text];
+        [self.typeLabel setText:cell.typeLabel.text];
         [self.delegate clickTypeCell:ReloadStart withError:nil];
         [self loadData:self.typeLabel.text];
-        //[self.goodsTableView reloadData];
     }else{
-        GoodsModel *goods = _goodsArray[indexPath.section];
-        [self.delegate clickGoodsCell:goods.goodsId];
+//        GoodsModel *goods = _goodsArray[indexPath.section];
+//        [self.delegate clickGoodsCell:goods.goodsId];
         [tableView deselectRowAtIndexPath:_goodsTableView.indexPathForSelectedRow animated:YES];
     }
 }
@@ -229,9 +232,10 @@ static const int distance = 2;
 */
 
 - (void)loadData:(NSString *)type {
+    Account *account = [AccountTool sharedAccountTool].account;
     __weak GoodsView *view = self;
     NSMutableArray *array = [[NSMutableArray alloc]init];
-    [GoodsTool initGoodsData:type withSchool:@"西安邮电大学"
+    [GoodsTool initGoodsData:type withSchool:account.school
                      success:^(id JSON) {
                          NSInteger status = [JSON[@"status"] integerValue];
                          if(0 == status) {

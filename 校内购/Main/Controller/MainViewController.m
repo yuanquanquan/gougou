@@ -22,6 +22,11 @@
 #import "GoodsPriceTool.h"
 #import "SelectGoods.h"
 #import "GoodsDetailController.h"
+#import "LoactionTableController.h"
+#import "Account.h"
+#import "AccountTool.h"
+#import "SchoolTableController.h"
+#import "LocationButton.h"
 
 @interface MainViewController ()<GoodsViewDelegate, ShopViewDelegate, CLLocationManagerDelegate, GoodsDetailControllerDelegate>
 
@@ -39,6 +44,8 @@
 @property (strong, nonatomic) NSMutableArray *goodsArray;
 @property (strong, nonatomic) NSDictionary *type;
 
+@property (strong, nonatomic) NSString *school;
+
 @end
 
 @implementation MainViewController
@@ -51,8 +58,6 @@
     self.automaticallyAdjustsScrollViewInsets = false;
     
     self.tabBarItem.title = @"首页";
-    
-//    [self initData];
 
     [self buildView];
     
@@ -62,12 +67,34 @@
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"加载数据中";
+ 
+    Account *account = [AccountTool sharedAccountTool].account;
+    if (account.school.length == 0) {
+        SchoolTableController * school = [[SchoolTableController alloc]init];
+        school.schoolArray = @[@"西安邮电大学", @"西京学院"];
+//        ZGNavigationController *nv = [[ZGNavigationController alloc]initWithRootViewController:school];
+        [self.navigationController pushViewController:school animated:YES];
+    }
+
 
  }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    Account *account = [AccountTool sharedAccountTool].account;
+    if (account.school.length == 0) {
+        [_hud setHidden:YES];
+        return;
+    }
+    
+    if (![_school isEqualToString:account.school]) {
+        [_hud setHidden:NO];
+        _school = account.school;
+        [self initData];
+    }
+    
     if (_goodsArray.count == 0) {
+        [_hud setHidden:NO];
         [self initData];
     }
 }
@@ -88,15 +115,17 @@
 
 - (void)initData {
 
+    Account *account = [AccountTool sharedAccountTool].account;
+
     __weak MainViewController *main = self;
-    [GoodsTool initTypeData:@"西安"
+    [GoodsTool initTypeData:account.city
                      success:^(id JSON){
                          NSInteger status = [JSON[@"status"] integerValue];
                          if(0 == status) {
                              _typeArray = JSON[@"data"];
                              //开启后台线程
                              dispatch_async(dispatch_get_global_queue(0, 0), ^(){
-                                 [main loadGoodsWithSchool:@"西安邮电大学"];
+                                 [main loadGoodsWithSchool:account.school];
                              });
                            }else {
                              _hud.hidden = YES;
@@ -113,10 +142,10 @@
 - (void)loadGoodsWithSchool:(NSString *)school {
     
     __weak MainViewController *main = self;
-//         NSString *type = _typeArray[0];
+         NSString *type = _typeArray[0];
 //        NSMutableArray *array = [[NSMutableArray alloc]init];
     _goodsArray = [[NSMutableArray alloc]init];
-        [GoodsTool initGoodsData:@"" withSchool:school
+        [GoodsTool initGoodsData:type withSchool:school
                          success:^(id JSON) {
                              [_hud setHidden:YES];
                              NSInteger status = [JSON[@"status"] integerValue];
@@ -149,6 +178,11 @@
     _goodsView.goodsArray = _goodsArray;
     [_goodsView.typeTableView reloadData];
     [_goodsView.goodsTableView reloadData];
+    //默认选中第一行
+    NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
+//    [_goodsView tableView:_goodsView.typeTableView didSelectRowAtIndexPath:ip];
+    [_goodsView.typeTableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    
     [UIView animateWithDuration:0.3 animations:^{
         [_hud setHidden:YES];
         [_shopVIew setHidden:NO];
@@ -166,10 +200,10 @@
     _shopVIew.hidden = YES;
     
     //设置Navigationbar 的 UIBarButtonItem
-   _locationButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_locationButton setTitle:@"定位" forState:UIControlStateNormal];
-    _locationButton.frame = CGRectMake(0, 0, 50,40 );
-    _locationButton.titleEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 0);
+   _locationButton = [LocationButton buttonWithType:UIButtonTypeRoundedRect];
+    [_locationButton setTitle:@"定位中" forState:UIControlStateNormal];
+    _locationButton.frame = CGRectMake(0, 0, 80,40 );
+    [_locationButton setImage:[[UIImage imageNamed:@"dingwei"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]forState:UIControlStateNormal];
     [_locationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_locationButton addTarget:self action:@selector(clickLocation:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithCustomView:_locationButton];
@@ -181,16 +215,6 @@
 }
 
 
-//点击了定位按钮
-- (void)clickLocation:(UIButton *)button {
-    NSLog(@"点击了定位按钮");
-    NSString *str = button.titleLabel.text;
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:str preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler: nil];
-    [self presentViewController:alertController animated:YES completion:nil];
-    [alertController addAction:action1];
-}
 
 # pragma mark GoodsViewDelegate
 
@@ -400,12 +424,16 @@
         [_locationManager requestAlwaysAuthorization];
     }else {
         
+        
         //提示用户无法进行定位操作
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"定位不成功 ,请确认开启定位" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler: nil];
         [alertController addAction:action1];
 
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        Account *account = [AccountTool sharedAccountTool].account;
+        [_locationButton setTitle:account.city forState:UIControlStateNormal];
     }
     
     // 开始定位
@@ -422,28 +450,37 @@
     
     // 获取当前所在的城市名
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    
     //根据经纬度反向地理编译出地址信息
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *array, NSError *error){
         
         if (array.count > 0) {
             CLPlacemark *placemark = [array objectAtIndex:0];
             //将获得的所有信息显示到label上
-            [_locationButton setTitle:placemark.name forState:UIControlStateNormal];
+//            [_locationButton setTitle:placemark.name forState:UIControlStateNormal];
             NSLog(@"%@",placemark.name);
             //获取城市
             NSString *city = placemark.locality;
+            NSLog(@"city-->%@",city);
+            [_locationButton setTitle:city forState:UIControlStateNormal];
+
             
             if (!city) {
                 //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
                 city = placemark.administrativeArea;
+                [_locationButton setTitle:city forState:UIControlStateNormal];
             }
             //self.cityName = city;
             
         }else if (error == nil && [array count] == 0) {
             NSLog(@"No results were returned.");
+            Account *account = [AccountTool sharedAccountTool].account;
+            [_locationButton setTitle:account.city forState:UIControlStateNormal];
+
         }else if (error != nil) {
             NSLog(@"An error occurred = %@", error);
+            Account *account = [AccountTool sharedAccountTool].account;
+            [_locationButton setTitle:account.city forState:UIControlStateNormal];
+
         }
         
     }];
@@ -456,10 +493,31 @@
 {
     if ([error code] == kCLErrorDenied) {
         //访问被拒绝
+        Account *account = [AccountTool sharedAccountTool].account;
+        [_locationButton setTitle:account.city forState:UIControlStateNormal];
+
     }
     if ([error code] == kCLErrorLocationUnknown) {
         //无法获取位置信息
+        Account *account = [AccountTool sharedAccountTool].account;
+        [_locationButton setTitle:account.city forState:UIControlStateNormal];
+
     }
+}
+
+//点击了定位按钮
+- (void)clickLocation:(UIButton *)button {
+    NSLog(@"点击了定位按钮");
+//    NSString *str = button.titleLabel.text;
+    
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:str preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler: nil];
+//    [self presentViewController:alertController animated:YES completion:nil];
+//    [alertController addAction:action1];
+    
+    LoactionTableController *location = [[LoactionTableController alloc]init];
+    location.cityName = _locationButton.titleLabel.text;
+    [self.navigationController pushViewController:location animated:YES];
 }
 
 

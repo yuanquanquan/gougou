@@ -47,12 +47,19 @@
     [_lineLabel setBackgroundColor:[UIColor grayColor]];
     [_lineLabel setAlpha:0.5];
     [self addSubview:_lineLabel];
+    
+    _typeLabel = [[UILabel alloc]init];
+    [_typeLabel setBackgroundColor:[UIColor clearColor]];
+    [_typeLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:_typeLabel];
 }
 
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     _lineLabel.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 0.5);
+    
+    _typeLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

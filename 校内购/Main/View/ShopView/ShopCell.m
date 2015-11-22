@@ -37,7 +37,7 @@
     
     _nameLabel = [[UILabel alloc]init];
     [_nameLabel setText:@"\t商品名称"];
-//    [self addSubview:_nameLabel];
+    [self addSubview:_nameLabel];
     
     _priceLabel = [[UILabel alloc]init];
     [_priceLabel setText:@"¥000.00"];
@@ -68,9 +68,9 @@
     float WIDTH = self.frame.size.width;
     float HEIGHT = self.frame.size.height;
     
-    _nameLabel.frame = CGRectMake(0, 0, WIDTH * (3 / 8.0), HEIGHT);
+    _nameLabel.frame = CGRectMake(10, 0, WIDTH * (3 / 8.0) - 10, HEIGHT);
     
-    _priceLabel.frame = CGRectMake(_nameLabel.frame.size.width, 0, WIDTH * (2 / 7.0), HEIGHT);
+    _priceLabel.frame = CGRectMake(WIDTH * (3 / 8.0) + 10, 0, WIDTH * (2 / 7.0), HEIGHT);
     
 //    _addButton.frame = CGRectMake(_priceLabel.frame.origin.x + _priceLabel.frame.size.width, 0, WIDTH * (2 / 21.0), HEIGHT);
     _addButton.bounds = CGRectMake(0, 0, WIDTH * (2 / 21.0), WIDTH * (2 / 21.0));
@@ -106,7 +106,7 @@
     }
     
     NSNumber *amount = [NSNumber numberWithInteger:count];
-    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.textLabel.text, @"price":self.priceLabel.text};
+    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.nameLabel.text, @"price":self.priceLabel.text};
     [goods.selectGoods replaceObjectAtIndex:i withObject:goodsDic];
     [self.delegate addButton:goodsDic wintIdx:i];
     
@@ -130,7 +130,7 @@
     }
     
     NSNumber *amount = [NSNumber numberWithInteger:count];
-    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.textLabel.text, @"price":self.priceLabel.text};
+    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.nameLabel.text, @"price":self.priceLabel.text};
     [goods.selectGoods replaceObjectAtIndex:i withObject:goodsDic];
     if (num == 0) {
         [_cutButton setEnabled:NO];

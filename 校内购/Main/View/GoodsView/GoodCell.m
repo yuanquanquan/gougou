@@ -95,11 +95,15 @@
     _goodsImage.center = CGPointMake((WIDTH * 1 / 3.0) / 2.0, HEIGHT / 2.0);
     _goodsImage.bounds =  CGRectMake(0, 0, HEIGHT - 10, HEIGHT - 10);
     
-     _nameLabel.frame = CGRectMake(WIDTH * 1 / 3.0 + 5, 5, WIDTH * 2 / 3.0 - 5, 25);
+//     _nameLabel.frame = CGRectMake(WIDTH * 1 / 3.0 + 5, 5, WIDTH * 2 / 3.0 - 20, 25);
+    
+    _nameLabel.frame = CGRectMake(WIDTH * 1 / 3.0 + 5, 5, WIDTH * 2 / 3.0 - 50, 50);
     
     _priceLabel.frame = CGRectMake(WIDTH * 1 / 3.0 + 5, _goodsImage.frame.origin.y + (HEIGHT - 10)  - 25, WIDTH * 1 / 3.0 - 5, 25);
     
-    _addButton.frame = CGRectMake(WIDTH - (HEIGHT - _nameLabel.frame.size.height - 20) - 5, _nameLabel.frame.origin.y + _nameLabel.frame.size.height + 5, HEIGHT - _nameLabel.frame.size.height - 20, HEIGHT - _nameLabel.frame.size.height - 20);
+//    _addButton.frame = CGRectMake(WIDTH - (HEIGHT - _nameLabel.frame.size.height - 20) - 5, _nameLabel.frame.origin.y + _nameLabel.frame.size.height + 5, HEIGHT - _nameLabel.frame.size.height - 20, HEIGHT - _nameLabel.frame.size.height - 20);
+    _addButton.frame = CGRectMake(WIDTH - (HEIGHT - _nameLabel.frame.size.height / 2 - 20) - 5, _nameLabel.frame.origin.y + _nameLabel.frame.size.height / 2 + 5, HEIGHT - _nameLabel.frame.size.height / 2 - 20, HEIGHT - _nameLabel.frame.size.height / 2 - 20);
+
     
     
 /*
@@ -113,6 +117,7 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    return;
 }
 
 - (NSString *)description {

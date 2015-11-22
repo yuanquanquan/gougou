@@ -52,6 +52,10 @@
 		22AB6B611BDA4B0C001C036F /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B601BDA4B0C001C036F /* InfoView.m */; };
 		22AB6B691BDA6EB0001C036F /* ZGBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B681BDA6EB0001C036F /* ZGBarButton.m */; };
 		22B307F41BE4F903000131B8 /* InfoBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B307F31BE4F903000131B8 /* InfoBackView.m */; };
+		22C9221B1C0167A4004A86EE /* LoactionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C9221A1C0167A4004A86EE /* LoactionTableController.m */; };
+		22C922231C016BB9004A86EE /* LocationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C922221C016BB9004A86EE /* LocationTool.m */; };
+		22C922261C018694004A86EE /* SchoolTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C922251C018694004A86EE /* SchoolTableController.m */; };
+		22C9222A1C01AEC1004A86EE /* LocationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C922291C01AEC1004A86EE /* LocationButton.m */; };
 		22DC227A1BE5DE3700D16FEB /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DC22781BE5DE3700D16FEB /* RemarkViewController.m */; };
 		22DC227B1BE5DE3700D16FEB /* RemarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DC22791BE5DE3700D16FEB /* RemarkViewController.xib */; };
 		22DC227F1BE5EFFD00D16FEB /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DC227E1BE5EFFD00D16FEB /* Address.m */; };
@@ -173,6 +177,14 @@
 		22AB6B681BDA6EB0001C036F /* ZGBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGBarButton.m; sourceTree = "<group>"; };
 		22B307F21BE4F903000131B8 /* InfoBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoBackView.h; sourceTree = "<group>"; };
 		22B307F31BE4F903000131B8 /* InfoBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoBackView.m; sourceTree = "<group>"; };
+		22C922191C0167A3004A86EE /* LoactionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoactionTableController.h; sourceTree = "<group>"; };
+		22C9221A1C0167A4004A86EE /* LoactionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoactionTableController.m; sourceTree = "<group>"; };
+		22C922211C016BB9004A86EE /* LocationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTool.h; sourceTree = "<group>"; };
+		22C922221C016BB9004A86EE /* LocationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTool.m; sourceTree = "<group>"; };
+		22C922241C018694004A86EE /* SchoolTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolTableController.h; sourceTree = "<group>"; };
+		22C922251C018694004A86EE /* SchoolTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolTableController.m; sourceTree = "<group>"; };
+		22C922281C01AEC1004A86EE /* LocationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationButton.h; sourceTree = "<group>"; };
+		22C922291C01AEC1004A86EE /* LocationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationButton.m; sourceTree = "<group>"; };
 		22DC22771BE5DE3700D16FEB /* RemarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarkViewController.h; sourceTree = "<group>"; };
 		22DC22781BE5DE3700D16FEB /* RemarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarkViewController.m; sourceTree = "<group>"; };
 		22DC22791BE5DE3700D16FEB /* RemarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemarkViewController.xib; sourceTree = "<group>"; };
@@ -397,6 +409,10 @@
 				22683DB71BF83F8900EF9307 /* GoodsDetailController.h */,
 				22683DB81BF83F8A00EF9307 /* GoodsDetailController.m */,
 				22683DB91BF83F8A00EF9307 /* GoodsDetailController.xib */,
+				22C922191C0167A3004A86EE /* LoactionTableController.h */,
+				22C9221A1C0167A4004A86EE /* LoactionTableController.m */,
+				22C922241C018694004A86EE /* SchoolTableController.h */,
+				22C922251C018694004A86EE /* SchoolTableController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -404,6 +420,7 @@
 		22269A051BD092F200632253 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22C922201C016BA0004A86EE /* Location */,
 				22102BB41BF2F37100CEE897 /* SelectGoods */,
 				221212E91BE79EE4005DD4C2 /* Goods */,
 			);
@@ -413,6 +430,7 @@
 		22269A061BD092F200632253 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				22C922271C01AEA0004A86EE /* LocationButton */,
 				22EF5A4F1BD3457800AF9D00 /* GoodsView */,
 				22EF5A591BD3459800AF9D00 /* ShopView */,
 			);
@@ -738,6 +756,24 @@
 				22AB6B681BDA6EB0001C036F /* ZGBarButton.m */,
 			);
 			path = ZGButton;
+			sourceTree = "<group>";
+		};
+		22C922201C016BA0004A86EE /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				22C922211C016BB9004A86EE /* LocationTool.h */,
+				22C922221C016BB9004A86EE /* LocationTool.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		22C922271C01AEA0004A86EE /* LocationButton */ = {
+			isa = PBXGroup;
+			children = (
+				22C922281C01AEC1004A86EE /* LocationButton.h */,
+				22C922291C01AEC1004A86EE /* LocationButton.m */,
+			);
+			path = LocationButton;
 			sourceTree = "<group>";
 		};
 		22DC227C1BE5EFB500D16FEB /* Address */ = {
@@ -1104,6 +1140,7 @@
 				22DF69AA1BDE223500C35E2B /* AddressCell.m in Sources */,
 				224A344F1BD10C5400F70A48 /* ZGNavigationController.m in Sources */,
 				225D533A1BE4844200D2AC63 /* OrderCell.m in Sources */,
+				22C9222A1C01AEC1004A86EE /* LocationButton.m in Sources */,
 				22E864841BDB85460076C2E8 /* LoginController.m in Sources */,
 				22A38BA11BCA643500C78E4C /* main.m in Sources */,
 				22E9406C1BDC916A001815A9 /* IntroduceView.m in Sources */,
@@ -1117,6 +1154,7 @@
 				22EB56D41BE1B51C00F09199 /* Define.m in Sources */,
 				22DF69A31BDE20F800C35E2B /* IntegrateTableController.m in Sources */,
 				22E940681BDC8C97001815A9 /* UserTableController.m in Sources */,
+				22C9221B1C0167A4004A86EE /* LoactionTableController.m in Sources */,
 				222699FF1BD0925600632253 /* ViewController.m in Sources */,
 				2289EAF61BD6730900616165 /* PayViewController.m in Sources */,
 				225D53361BE4729D00D2AC63 /* PassViewController.m in Sources */,
@@ -1145,9 +1183,11 @@
 				221212F01BE79EF7005DD4C2 /* GoodsTool.m in Sources */,
 				22DF69A61BDE218600C35E2B /* AddressTableController.m in Sources */,
 				22269A151BD09B3400632253 /* MainViewController.m in Sources */,
+				22C922231C016BB9004A86EE /* LocationTool.m in Sources */,
 				22DC22821BE5F17F00D16FEB /* AddressTool.m in Sources */,
 				22683DBA1BF83F8A00EF9307 /* GoodsDetailController.m in Sources */,
 				22DF699F1BDE20F200C35E2B /* CouponTableController.m in Sources */,
+				22C922261C018694004A86EE /* SchoolTableController.m in Sources */,
 				228EC43B1BDE480C000E3AC8 /* ContactViewController.m in Sources */,
 				22EB56D71BE2188900F09199 /* HomeViewController.m in Sources */,
 				22EF5A561BD3457900AF9D00 /* GoodCell.m in Sources */,

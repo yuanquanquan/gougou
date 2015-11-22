@@ -135,7 +135,8 @@ static const int headerHeight = 44;
         cell.delegate = self;
     }
     NSDictionary *dic = _goods.selectGoods[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",dic[@"name"]];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@",dic[@"name"]];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@",dic[@"name"]];
     cell.priceLabel.text = dic[@"price"];
     cell.numLabel.text = [NSString stringWithFormat:@"%@",dic[@"amount"]];
     cell.goodsId = dic[@"gId"];

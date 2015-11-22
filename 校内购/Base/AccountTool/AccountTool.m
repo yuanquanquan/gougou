@@ -19,6 +19,9 @@ single_implementation(AccountTool)
 {
     if (self = [super init]) {
         _account = [NSKeyedUnarchiver unarchiveObjectWithFile:kFile];
+        if (_account == nil) {
+            _account = [[Account alloc]init];
+        }
     }
     return self;
 }
