@@ -8,6 +8,7 @@
 
 #import "OrderViewController.h"
 #import "OrderCell.h"
+#import "GetOrderTool.h"
 
 @interface OrderViewController ()
 
@@ -21,6 +22,12 @@
     [super viewDidLoad];
 
     [self buildView];
+    
+    [GetOrderTool getOrderWithSuccess:^(id JSON) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 

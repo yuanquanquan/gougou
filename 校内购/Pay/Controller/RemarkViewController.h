@@ -17,6 +17,6 @@
 @interface RemarkViewController : UIViewController
 
 
-@property (weak, nonatomic) IBOutlet UITextView *remarkText;
+@property (strong, nonatomic) UITextView *remarkText;
 @property (weak, nonatomic) id <RemarkViewControllerDelegate> delegate;
 @end

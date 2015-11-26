@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 typedef void(^GetPriceSuccess)(id JSON);
 typedef void(^GetPriceFailure)(NSError *error);
@@ -16,6 +15,5 @@ typedef void(^GetPriceFailure)(NSError *error);
 
 + (void) caculatePriceWithSuccess:(GetPriceSuccess)success failure:(GetPriceFailure)failure;
 
-+ (void)creatOrder;
 
 @end

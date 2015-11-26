@@ -321,6 +321,7 @@
 
     }else{
         PayViewController *pay = [[PayViewController alloc]init];
+        pay.allPrice = self.shopVIew.allLabel.text;
         [self.navigationController pushViewController:pay animated:YES];
 
     }

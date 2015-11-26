@@ -242,6 +242,14 @@ static const int headerHeight = 44;
   }
 
 - (void)clickGoPay:(id)sender {
+    _goods = [SelectGoods sharedSelectGoods];
+    for (NSDictionary *dic in _goods.selectGoods) {
+        if ([dic[@"amount"] isEqualToNumber:@0]) {
+            [_goods.selectGoods removeObject:dic];
+        }
+    }
+    [self.shopList reloadData];
+    
     [self.delegate  goPay:@"点击了去支付按钮"];
 }
 
@@ -259,7 +267,15 @@ static const int headerHeight = 44;
 
 #pragma mark BackViewDelegate
 - (void)clickView {
-
+    
+    _goods = [SelectGoods sharedSelectGoods];
+    for (NSDictionary *dic in _goods.selectGoods) {
+        if ([dic[@"amount"] isEqualToNumber:@0]) {
+            [_goods.selectGoods removeObject:dic];
+        }
+    }
+    [self.shopList reloadData];
+    
     [UIView animateWithDuration:0.3 animations:^(){
         _shopList.alpha = 0;
         _backView.alpha = 0;

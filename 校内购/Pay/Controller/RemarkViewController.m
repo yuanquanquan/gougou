@@ -17,12 +17,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
+//    CGRect frame = CGRectMake( 1, 100,  self.view.frame.size.width - 2, self.view.frame.size.height * (120 / 568.0));
+//    _remarkText.frame = frame;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    _remarkText = [[UITextView alloc]initWithFrame:CGRectMake(10, 100, self.view.frame.size.width - 2 * 10, self.view.frame.size.height * (120 / 568.0))];
     [_remarkText becomeFirstResponder];
     [_remarkText.layer setCornerRadius:5];
     [_remarkText.layer setBorderWidth:0.3];
     [_remarkText.layer setMasksToBounds:YES];
-    CGRect frame = CGRectMake( 1, 100,  self.view.frame.size.width - 2, self.view.frame.size.height * (120 / 568.0));
-    _remarkText.frame = frame;
+    [_remarkText.layer setBorderColor:[UIColor grayColor].CGColor];
+//    _remarkText.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//    [_remarkText setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.view addSubview:_remarkText];
     
     self.title = @"添加备注";
     

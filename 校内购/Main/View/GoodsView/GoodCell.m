@@ -23,8 +23,8 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        //设置为不可选中
-//        self.userInteractionEnabled = NO;
+        //设置为不可选中
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self buildView];
     }
     return self;
@@ -140,7 +140,8 @@
     }
     
     NSNumber *amount = [NSNumber numberWithInteger:count];
-    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.nameLabel.text, @"price":self.priceLabel.text};
+    UIImage *image = _goodsImage.image;
+    NSDictionary *goodsDic = @{@"gId":_goodsId, @"amount": amount, @"name":self.nameLabel.text, @"price":self.priceLabel.text, @"gImage":image};
     [goods.selectGoods addObject:goodsDic];
     [self.delegate addTrolley:goodsDic withIdx:i withPoint:point];
 

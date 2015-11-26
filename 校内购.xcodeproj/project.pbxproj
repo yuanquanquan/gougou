@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22065E5F1C044F8300E16A4A /* CreatOrderTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 22065E5E1C044F8300E16A4A /* CreatOrderTool.m */; };
 		2209E1AB1BCA056D0043AD8F /* XNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2209E1AA1BCA056D0043AD8F /* XNGAppDelegate.m */; };
 		2209E1B31BCA056D0043AD8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2209E1B21BCA056D0043AD8F /* Assets.xcassets */; };
 		22102BB71BF2F39F00CEE897 /* SelectGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 22102BB61BF2F39F00CEE897 /* SelectGoods.m */; };
 		22102BBA1BF320C200CEE897 /* GoodsPriceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 22102BB91BF320C200CEE897 /* GoodsPriceTool.m */; };
-		221066DB1BD7D3DC00E69B02 /* PayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 221066DA1BD7D3DC00E69B02 /* PayView.m */; };
 		221212F01BE79EF7005DD4C2 /* GoodsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 221212EB1BE79EF7005DD4C2 /* GoodsTool.m */; };
 		221212F11BE79EF7005DD4C2 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 221212ED1BE79EF7005DD4C2 /* GoodsModel.m */; };
 		222699FE1BD0925600632253 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222699FB1BD0925600632253 /* Main.storyboard */; };
@@ -26,10 +26,16 @@
 		225D53361BE4729D00D2AC63 /* PassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 225D53341BE4729D00D2AC63 /* PassViewController.m */; };
 		225D53371BE4729D00D2AC63 /* PassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225D53351BE4729D00D2AC63 /* PassViewController.xib */; };
 		225D533A1BE4844200D2AC63 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 225D53391BE4844200D2AC63 /* OrderCell.m */; };
+		2264AA4B1C059E7200A8D0FD /* GetOrderTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2264AA4A1C059E7200A8D0FD /* GetOrderTool.m */; };
+		2264AA4E1C05A42F00A8D0FD /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 2264AA4D1C05A42F00A8D0FD /* Order.m */; };
 		22683DBA1BF83F8A00EF9307 /* GoodsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22683DB81BF83F8A00EF9307 /* GoodsDetailController.m */; };
 		22683DBB1BF83F8A00EF9307 /* GoodsDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22683DB91BF83F8A00EF9307 /* GoodsDetailController.xib */; };
-		2289EAF61BD6730900616165 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2289EAF41BD6730900616165 /* PayViewController.m */; };
-		2289EAF71BD6730900616165 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2289EAF51BD6730900616165 /* PayViewController.xib */; };
+		22748EF21C0424FA0061E830 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22748EF11C0424FA0061E830 /* PayViewController.m */; };
+		22748EFC1C04253C0061E830 /* OrderGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22748EF51C04253C0061E830 /* OrderGoodsCell.m */; };
+		22748EFD1C04253C0061E830 /* PayAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22748EF71C04253C0061E830 /* PayAddressCell.m */; };
+		22748EFE1C04253C0061E830 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22748EF91C04253C0061E830 /* PayInfoCell.m */; };
+		22748EFF1C04253C0061E830 /* PayTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22748EFB1C04253C0061E830 /* PayTableView.m */; };
+		22748F031C0428160061E830 /* GoPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22748F021C0428160061E830 /* GoPayView.m */; };
 		228EC42F1BDE3422000E3AC8 /* AddAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228EC42D1BDE3422000E3AC8 /* AddAddressController.m */; };
 		228EC4301BDE3422000E3AC8 /* AddAddressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228EC42E1BDE3422000E3AC8 /* AddAddressController.xib */; };
 		228EC4361BDE47BE000E3AC8 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228EC4341BDE47BE000E3AC8 /* HelpViewController.m */; };
@@ -49,15 +55,12 @@
 		22A38BA01BCA643500C78E4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A38B9D1BCA643500C78E4C /* LaunchScreen.storyboard */; };
 		22A38BA11BCA643500C78E4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A38B9E1BCA643500C78E4C /* main.m */; };
 		22A81CF41BFD7E2800729661 /* XNGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A81CF31BFD7E2800729661 /* XNGButton.m */; };
-		22AB6B611BDA4B0C001C036F /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B601BDA4B0C001C036F /* InfoView.m */; };
 		22AB6B691BDA6EB0001C036F /* ZGBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AB6B681BDA6EB0001C036F /* ZGBarButton.m */; };
-		22B307F41BE4F903000131B8 /* InfoBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B307F31BE4F903000131B8 /* InfoBackView.m */; };
 		22C9221B1C0167A4004A86EE /* LoactionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C9221A1C0167A4004A86EE /* LoactionTableController.m */; };
 		22C922231C016BB9004A86EE /* LocationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C922221C016BB9004A86EE /* LocationTool.m */; };
 		22C922261C018694004A86EE /* SchoolTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C922251C018694004A86EE /* SchoolTableController.m */; };
 		22C9222A1C01AEC1004A86EE /* LocationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C922291C01AEC1004A86EE /* LocationButton.m */; };
 		22DC227A1BE5DE3700D16FEB /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DC22781BE5DE3700D16FEB /* RemarkViewController.m */; };
-		22DC227B1BE5DE3700D16FEB /* RemarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DC22791BE5DE3700D16FEB /* RemarkViewController.xib */; };
 		22DC227F1BE5EFFD00D16FEB /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DC227E1BE5EFFD00D16FEB /* Address.m */; };
 		22DC22821BE5F17F00D16FEB /* AddressTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DC22811BE5F17F00D16FEB /* AddressTool.m */; };
 		22DF699F1BDE20F200C35E2B /* CouponTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DF699E1BDE20F200C35E2B /* CouponTableController.m */; };
@@ -65,7 +68,6 @@
 		22DF69A61BDE218600C35E2B /* AddressTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DF69A51BDE218600C35E2B /* AddressTableController.m */; };
 		22DF69AA1BDE223500C35E2B /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DF69A91BDE223500C35E2B /* AddressCell.m */; };
 		22DF69AE1BDE265A00C35E2B /* AddressInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DF69AD1BDE265A00C35E2B /* AddressInfoView.m */; };
-		22E864801BDB74750076C2E8 /* ShopsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E8647F1BDB74750076C2E8 /* ShopsView.m */; };
 		22E864841BDB85460076C2E8 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E864821BDB85460076C2E8 /* LoginController.m */; };
 		22E864851BDB85460076C2E8 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E864831BDB85460076C2E8 /* LoginController.xib */; };
 		22E8648B1BDB92050076C2E8 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E864891BDB92050076C2E8 /* RegisterController.m */; };
@@ -100,6 +102,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22065E5D1C044F8300E16A4A /* CreatOrderTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatOrderTool.h; sourceTree = "<group>"; };
+		22065E5E1C044F8300E16A4A /* CreatOrderTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatOrderTool.m; sourceTree = "<group>"; };
 		2209E1A31BCA056C0043AD8F /* 校内购.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "校内购.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2209E1A91BCA056D0043AD8F /* XNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNGAppDelegate.h; sourceTree = "<group>"; };
 		2209E1AA1BCA056D0043AD8F /* XNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNGAppDelegate.m; sourceTree = "<group>"; };
@@ -108,8 +112,6 @@
 		22102BB61BF2F39F00CEE897 /* SelectGoods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGoods.m; sourceTree = "<group>"; };
 		22102BB81BF320C200CEE897 /* GoodsPriceTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsPriceTool.h; sourceTree = "<group>"; };
 		22102BB91BF320C200CEE897 /* GoodsPriceTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsPriceTool.m; sourceTree = "<group>"; };
-		221066D91BD7D3DC00E69B02 /* PayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayView.h; sourceTree = "<group>"; };
-		221066DA1BD7D3DC00E69B02 /* PayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayView.m; sourceTree = "<group>"; };
 		221212EA1BE79EEC005DD4C2 /* GoodsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsTool.h; sourceTree = "<group>"; };
 		221212EB1BE79EF7005DD4C2 /* GoodsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsTool.m; sourceTree = "<group>"; };
 		221212EC1BE79EF7005DD4C2 /* GoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsModel.h; sourceTree = "<group>"; };
@@ -135,12 +137,25 @@
 		225D53351BE4729D00D2AC63 /* PassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassViewController.xib; sourceTree = "<group>"; };
 		225D53381BE4844200D2AC63 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
 		225D53391BE4844200D2AC63 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		2264AA491C059E7200A8D0FD /* GetOrderTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetOrderTool.h; sourceTree = "<group>"; };
+		2264AA4A1C059E7200A8D0FD /* GetOrderTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetOrderTool.m; sourceTree = "<group>"; };
+		2264AA4C1C05A42F00A8D0FD /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		2264AA4D1C05A42F00A8D0FD /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		22683DB71BF83F8900EF9307 /* GoodsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailController.h; sourceTree = "<group>"; };
 		22683DB81BF83F8A00EF9307 /* GoodsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailController.m; sourceTree = "<group>"; };
 		22683DB91BF83F8A00EF9307 /* GoodsDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailController.xib; sourceTree = "<group>"; };
-		2289EAF31BD6730900616165 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
-		2289EAF41BD6730900616165 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
-		2289EAF51BD6730900616165 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
+		22748EF01C0424FA0061E830 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
+		22748EF11C0424FA0061E830 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
+		22748EF41C04253C0061E830 /* OrderGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderGoodsCell.h; sourceTree = "<group>"; };
+		22748EF51C04253C0061E830 /* OrderGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderGoodsCell.m; sourceTree = "<group>"; };
+		22748EF61C04253C0061E830 /* PayAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayAddressCell.h; sourceTree = "<group>"; };
+		22748EF71C04253C0061E830 /* PayAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayAddressCell.m; sourceTree = "<group>"; };
+		22748EF81C04253C0061E830 /* PayInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoCell.h; sourceTree = "<group>"; };
+		22748EF91C04253C0061E830 /* PayInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoCell.m; sourceTree = "<group>"; };
+		22748EFA1C04253C0061E830 /* PayTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTableView.h; sourceTree = "<group>"; };
+		22748EFB1C04253C0061E830 /* PayTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTableView.m; sourceTree = "<group>"; };
+		22748F011C0428160061E830 /* GoPayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoPayView.h; sourceTree = "<group>"; };
+		22748F021C0428160061E830 /* GoPayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoPayView.m; sourceTree = "<group>"; };
 		228EC42C1BDE3422000E3AC8 /* AddAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressController.h; sourceTree = "<group>"; };
 		228EC42D1BDE3422000E3AC8 /* AddAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressController.m; sourceTree = "<group>"; };
 		228EC42E1BDE3422000E3AC8 /* AddAddressController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressController.xib; sourceTree = "<group>"; };
@@ -171,12 +186,8 @@
 		22A38B9E1BCA643500C78E4C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22A81CF21BFD7E2800729661 /* XNGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNGButton.h; sourceTree = "<group>"; };
 		22A81CF31BFD7E2800729661 /* XNGButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNGButton.m; sourceTree = "<group>"; };
-		22AB6B5F1BDA4B0C001C036F /* InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoView.h; path = ../PayView/InfoView.h; sourceTree = "<group>"; };
-		22AB6B601BDA4B0C001C036F /* InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoView.m; path = ../PayView/InfoView.m; sourceTree = "<group>"; };
 		22AB6B671BDA6EB0001C036F /* ZGBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGBarButton.h; sourceTree = "<group>"; };
 		22AB6B681BDA6EB0001C036F /* ZGBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGBarButton.m; sourceTree = "<group>"; };
-		22B307F21BE4F903000131B8 /* InfoBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoBackView.h; sourceTree = "<group>"; };
-		22B307F31BE4F903000131B8 /* InfoBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoBackView.m; sourceTree = "<group>"; };
 		22C922191C0167A3004A86EE /* LoactionTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoactionTableController.h; sourceTree = "<group>"; };
 		22C9221A1C0167A4004A86EE /* LoactionTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoactionTableController.m; sourceTree = "<group>"; };
 		22C922211C016BB9004A86EE /* LocationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTool.h; sourceTree = "<group>"; };
@@ -187,7 +198,6 @@
 		22C922291C01AEC1004A86EE /* LocationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationButton.m; sourceTree = "<group>"; };
 		22DC22771BE5DE3700D16FEB /* RemarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarkViewController.h; sourceTree = "<group>"; };
 		22DC22781BE5DE3700D16FEB /* RemarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarkViewController.m; sourceTree = "<group>"; };
-		22DC22791BE5DE3700D16FEB /* RemarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemarkViewController.xib; sourceTree = "<group>"; };
 		22DC227D1BE5EFFD00D16FEB /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		22DC227E1BE5EFFD00D16FEB /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		22DC22801BE5F17F00D16FEB /* AddressTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTool.h; sourceTree = "<group>"; };
@@ -202,8 +212,6 @@
 		22DF69A91BDE223500C35E2B /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		22DF69AC1BDE265A00C35E2B /* AddressInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressInfoView.h; sourceTree = "<group>"; };
 		22DF69AD1BDE265A00C35E2B /* AddressInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressInfoView.m; sourceTree = "<group>"; };
-		22E8647E1BDB74750076C2E8 /* ShopsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopsView.h; sourceTree = "<group>"; };
-		22E8647F1BDB74750076C2E8 /* ShopsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopsView.m; sourceTree = "<group>"; };
 		22E864811BDB85460076C2E8 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		22E864821BDB85460076C2E8 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		22E864831BDB85460076C2E8 /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
@@ -336,33 +344,6 @@
 				22102BB91BF320C200CEE897 /* GoodsPriceTool.m */,
 			);
 			path = SelectGoods;
-			sourceTree = "<group>";
-		};
-		2210667E1BD7BA6B00E69B02 /* InfoView */ = {
-			isa = PBXGroup;
-			children = (
-				22AB6B5F1BDA4B0C001C036F /* InfoView.h */,
-				22AB6B601BDA4B0C001C036F /* InfoView.m */,
-				22B307F21BE4F903000131B8 /* InfoBackView.h */,
-				22B307F31BE4F903000131B8 /* InfoBackView.m */,
-			);
-			path = InfoView;
-			sourceTree = "<group>";
-		};
-		2210667F1BD7BA6C00E69B02 /* PayView */ = {
-			isa = PBXGroup;
-			children = (
-				221066D91BD7D3DC00E69B02 /* PayView.h */,
-				221066DA1BD7D3DC00E69B02 /* PayView.m */,
-			);
-			path = PayView;
-			sourceTree = "<group>";
-		};
-		221066801BD7BA6C00E69B02 /* TakeGoodsView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TakeGoodsView;
 			sourceTree = "<group>";
 		};
 		221212E91BE79EE4005DD4C2 /* Goods */ = {
@@ -507,6 +488,10 @@
 		22269A0D1BD0935E00632253 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2264AA4C1C05A42F00A8D0FD /* Order.h */,
+				2264AA4D1C05A42F00A8D0FD /* Order.m */,
+				2264AA491C059E7200A8D0FD /* GetOrderTool.h */,
+				2264AA4A1C059E7200A8D0FD /* GetOrderTool.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -559,6 +544,7 @@
 			children = (
 				22EB56D11BE1B49E00F09199 /* Define&Error */,
 				22EB56C41BE1B1DC00F09199 /* XNGcfg.h */,
+				22EB56CA1BE1B1E100F09199 /* HttpTool */,
 				22EB56C51BE1B1E100F09199 /* AccountTool */,
 				22F493811BDFACCA00142C1E /* NSString+SHA */,
 				22AB6B661BDA6E80001C036F /* ZGButton */,
@@ -590,6 +576,30 @@
 			path = NavigationController;
 			sourceTree = "<group>";
 		};
+		22748EF31C04253B0061E830 /* PayView */ = {
+			isa = PBXGroup;
+			children = (
+				22748EF41C04253C0061E830 /* OrderGoodsCell.h */,
+				22748EF51C04253C0061E830 /* OrderGoodsCell.m */,
+				22748EF61C04253C0061E830 /* PayAddressCell.h */,
+				22748EF71C04253C0061E830 /* PayAddressCell.m */,
+				22748EF81C04253C0061E830 /* PayInfoCell.h */,
+				22748EF91C04253C0061E830 /* PayInfoCell.m */,
+				22748EFA1C04253C0061E830 /* PayTableView.h */,
+				22748EFB1C04253C0061E830 /* PayTableView.m */,
+			);
+			path = PayView;
+			sourceTree = "<group>";
+		};
+		22748F001C0427EC0061E830 /* GoPay */ = {
+			isa = PBXGroup;
+			children = (
+				22748F011C0428160061E830 /* GoPayView.h */,
+				22748F021C0428160061E830 /* GoPayView.m */,
+			);
+			path = GoPay;
+			sourceTree = "<group>";
+		};
 		2289EACE1BD6667D00616165 /* Pay */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,12 +613,10 @@
 		2289EACF1BD6667D00616165 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2289EAF31BD6730900616165 /* PayViewController.h */,
-				2289EAF41BD6730900616165 /* PayViewController.m */,
-				2289EAF51BD6730900616165 /* PayViewController.xib */,
+				22748EF01C0424FA0061E830 /* PayViewController.h */,
+				22748EF11C0424FA0061E830 /* PayViewController.m */,
 				22DC22771BE5DE3700D16FEB /* RemarkViewController.h */,
 				22DC22781BE5DE3700D16FEB /* RemarkViewController.m */,
-				22DC22791BE5DE3700D16FEB /* RemarkViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -616,6 +624,8 @@
 		2289EAD01BD6667D00616165 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22065E5D1C044F8300E16A4A /* CreatOrderTool.h */,
+				22065E5E1C044F8300E16A4A /* CreatOrderTool.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -623,10 +633,8 @@
 		2289EAD11BD6667D00616165 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				22E8647D1BDB74750076C2E8 /* GoodsView */,
-				221066801BD7BA6C00E69B02 /* TakeGoodsView */,
-				2210667F1BD7BA6C00E69B02 /* PayView */,
-				2210667E1BD7BA6B00E69B02 /* InfoView */,
+				22748F001C0427EC0061E830 /* GoPay */,
+				22748EF31C04253B0061E830 /* PayView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -835,15 +843,6 @@
 			path = AddressInfo;
 			sourceTree = "<group>";
 		};
-		22E8647D1BDB74750076C2E8 /* GoodsView */ = {
-			isa = PBXGroup;
-			children = (
-				22E8647E1BDB74750076C2E8 /* ShopsView.h */,
-				22E8647F1BDB74750076C2E8 /* ShopsView.m */,
-			);
-			path = GoodsView;
-			sourceTree = "<group>";
-		};
 		22E940691BDC913F001815A9 /* Introduce */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,7 +879,6 @@
 				22EB56C71BE1B1E100F09199 /* Account.m */,
 				22EB56C81BE1B1E100F09199 /* AccountTool.h */,
 				22EB56C91BE1B1E100F09199 /* AccountTool.m */,
-				22EB56CA1BE1B1E100F09199 /* HttpTool */,
 				22EB56CD1BE1B1E100F09199 /* Singleton.h */,
 			);
 			path = AccountTool;
@@ -892,7 +890,8 @@
 				22EB56CB1BE1B1E100F09199 /* HttpTool.h */,
 				22EB56CC1BE1B1E100F09199 /* HttpTool.m */,
 			);
-			path = HttpTool;
+			name = HttpTool;
+			path = AccountTool/HttpTool;
 			sourceTree = "<group>";
 		};
 		22EB56D11BE1B49E00F09199 /* Define&Error */ = {
@@ -1051,7 +1050,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A38B9A1BCA63E800C78E4C /* Default-568h@2x.png in Resources */,
-				22DC227B1BE5DE3700D16FEB /* RemarkViewController.xib in Resources */,
 				228EC4371BDE47BE000E3AC8 /* HelpViewController.xib in Resources */,
 				228EC43C1BDE480C000E3AC8 /* ContactViewController.xib in Resources */,
 				22EB56DC1BE21F1C00F09199 /* OrderViewController.xib in Resources */,
@@ -1064,7 +1062,6 @@
 				228EC44D1BDE4A20000E3AC8 /* SettingViewController.xib in Resources */,
 				22A38BA01BCA643500C78E4C /* LaunchScreen.storyboard in Resources */,
 				225D53371BE4729D00D2AC63 /* PassViewController.xib in Resources */,
-				2289EAF71BD6730900616165 /* PayViewController.xib in Resources */,
 				222699FE1BD0925600632253 /* Main.storyboard in Resources */,
 				225D53321BE461DF00D2AC63 /* NameViewController.xib in Resources */,
 				228EC4411BDE48F7000E3AC8 /* ImageViewController.xib in Resources */,
@@ -1130,7 +1127,7 @@
 			files = (
 				224A34491BD1076400F70A48 /* Dock.m in Sources */,
 				224A344A1BD1076400F70A48 /* DockController.m in Sources */,
-				22E864801BDB74750076C2E8 /* ShopsView.m in Sources */,
+				22748EFF1C04253C0061E830 /* PayTableView.m in Sources */,
 				22EB56F31BE3853D00F09199 /* HeadImageController.m in Sources */,
 				22102BB71BF2F39F00CEE897 /* SelectGoods.m in Sources */,
 				22EB56CE1BE1B1E100F09199 /* Account.m in Sources */,
@@ -1149,28 +1146,28 @@
 				228EC4401BDE48F7000E3AC8 /* ImageViewController.m in Sources */,
 				228EC4461BDE49C4000E3AC8 /* InviteViewController.m in Sources */,
 				22AB6B691BDA6EB0001C036F /* ZGBarButton.m in Sources */,
-				22B307F41BE4F903000131B8 /* InfoBackView.m in Sources */,
 				221212F11BE79EF7005DD4C2 /* GoodsModel.m in Sources */,
 				22EB56D41BE1B51C00F09199 /* Define.m in Sources */,
 				22DF69A31BDE20F800C35E2B /* IntegrateTableController.m in Sources */,
 				22E940681BDC8C97001815A9 /* UserTableController.m in Sources */,
 				22C9221B1C0167A4004A86EE /* LoactionTableController.m in Sources */,
 				222699FF1BD0925600632253 /* ViewController.m in Sources */,
-				2289EAF61BD6730900616165 /* PayViewController.m in Sources */,
 				225D53361BE4729D00D2AC63 /* PassViewController.m in Sources */,
 				22EB56D01BE1B1E100F09199 /* HttpTool.m in Sources */,
 				22EB56E01BE21F5900F09199 /* ActivityTableController.m in Sources */,
 				22E8648B1BDB92050076C2E8 /* RegisterController.m in Sources */,
-				22AB6B611BDA4B0C001C036F /* InfoView.m in Sources */,
 				22E940771BDCC3CD001815A9 /* IntegrateCell.m in Sources */,
+				22748EFD1C04253C0061E830 /* PayAddressCell.m in Sources */,
+				22748F031C0428160061E830 /* GoPayView.m in Sources */,
 				22EB56DB1BE21F1C00F09199 /* OrderViewController.m in Sources */,
+				22748EF21C0424FA0061E830 /* PayViewController.m in Sources */,
 				22E940731BDCB684001815A9 /* CouponCell.m in Sources */,
 				228EC42F1BDE3422000E3AC8 /* AddAddressController.m in Sources */,
 				2291F3F81BD4BB5D0034A596 /* ShopCell.m in Sources */,
 				225D53311BE461DF00D2AC63 /* NameViewController.m in Sources */,
 				228EC44C1BDE4A20000E3AC8 /* SettingViewController.m in Sources */,
 				22102BBA1BF320C200CEE897 /* GoodsPriceTool.m in Sources */,
-				221066DB1BD7D3DC00E69B02 /* PayView.m in Sources */,
+				2264AA4E1C05A42F00A8D0FD /* Order.m in Sources */,
 				22EF5A571BD3457900AF9D00 /* GoodsView.m in Sources */,
 				228EC4361BDE47BE000E3AC8 /* HelpViewController.m in Sources */,
 				2291F3FE1BD4C1FA0034A596 /* BackView.m in Sources */,
@@ -1179,14 +1176,18 @@
 				22F493841BDFAD1900142C1E /* NSString+SHA.m in Sources */,
 				2209E1AB1BCA056D0043AD8F /* XNGAppDelegate.m in Sources */,
 				22DF69AE1BDE265A00C35E2B /* AddressInfoView.m in Sources */,
+				22748EFC1C04253C0061E830 /* OrderGoodsCell.m in Sources */,
 				22EB56EA1BE3758600F09199 /* InfoViewController.m in Sources */,
 				221212F01BE79EF7005DD4C2 /* GoodsTool.m in Sources */,
+				2264AA4B1C059E7200A8D0FD /* GetOrderTool.m in Sources */,
 				22DF69A61BDE218600C35E2B /* AddressTableController.m in Sources */,
 				22269A151BD09B3400632253 /* MainViewController.m in Sources */,
 				22C922231C016BB9004A86EE /* LocationTool.m in Sources */,
 				22DC22821BE5F17F00D16FEB /* AddressTool.m in Sources */,
 				22683DBA1BF83F8A00EF9307 /* GoodsDetailController.m in Sources */,
+				22748EFE1C04253C0061E830 /* PayInfoCell.m in Sources */,
 				22DF699F1BDE20F200C35E2B /* CouponTableController.m in Sources */,
+				22065E5F1C044F8300E16A4A /* CreatOrderTool.m in Sources */,
 				22C922261C018694004A86EE /* SchoolTableController.m in Sources */,
 				228EC43B1BDE480C000E3AC8 /* ContactViewController.m in Sources */,
 				22EB56D71BE2188900F09199 /* HomeViewController.m in Sources */,
